@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototipo — Asistente Personal con IA</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<style>
+  :root{
+    --indigo:#6C4CF1; --indigo-d:#4B31D4; --teal:#12B5A5; --ink:#16151F;
+    --muted:#6B6980; --line:#E7E5F0; --canvas:#F4F3FA; --chatbg:#ECEAF6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
+  body{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+       background:linear-gradient(160deg,#EEECFB 0%,#F7F6FC 55%,#EAF6F4 100%);padding:24px;}
+  .caption{font-size:13px;color:var(--muted);margin-bottom:14px;text-align:center;}
+  .caption b{color:var(--ink);}
+  .phone{width:340px;border-radius:42px;background:#0C0B14;padding:10px;box-shadow:0 30px 60px rgba(30,20,80,.28);}
+  .screen{position:relative;overflow:hidden;border-radius:34px;height:700px;background:#fff;}
+  .notch{position:absolute;left:50%;top:9px;transform:translateX(-50%);width:112px;height:20px;border-radius:20px;background:#0C0B14;z-index:20;}
+  .pane{position:absolute;inset:0;display:flex;flex-direction:column;}
+  .status{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 4px;font-size:12px;font-weight:600;}
+  .status .icons{display:flex;gap:5px;align-items:center;}
+  /* ---- Suscripción ---- */
+  .sub{background:var(--canvas);}
+  .body{flex:1;overflow-y:auto;padding:8px 20px 20px;}
+  .brand{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+  .logo{width:36px;height:36px;border-radius:12px;background:var(--indigo);display:flex;align-items:center;justify-content:center;}
+  .brand .n{font-size:16px;font-weight:800;color:var(--ink);}
+  .brand .t{font-size:11px;color:var(--muted);}
+  h1{font-size:20px;font-weight:800;color:var(--ink);line-height:1.15;}
+  .sub-p{margin-top:4px;font-size:13px;color:var(--muted);}
+  .lab{font-size:11px;font-weight:700;color:var(--muted);display:block;margin-top:12px;}
+  .field{margin-top:4px;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#FBFBFE;transition:border-color .15s;}
+  .field:focus-within{border-color:var(--indigo);}
+  .field input{border:none;outline:none;background:transparent;font-size:13px;color:var(--ink);width:100%;}
+  .field .pfx{font-size:13px;font-weight:700;color:var(--ink);white-space:nowrap;display:flex;align-items:center;gap:3px;}
+  .seg{display:flex;gap:8px;margin-top:4px;}
+  .seg button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;padding:10px 0;font-size:13px;font-weight:700;border:1px solid var(--line);background:#FBFBFE;color:var(--muted);cursor:pointer;transition:.15s;}
+  .seg button.on{background:var(--indigo);color:#fff;border-color:var(--indigo);}
+  .plans{display:flex;gap:8px;margin-top:4px;}
+  .plan{flex:1;border-radius:16px;padding:12px;border:1.5px solid var(--line);background:#FBFBFE;cursor:pointer;transition:.15s;}
+  .plan.on{border-color:var(--indigo);background:#F1EEFE;}
+  .plan .h{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:800;color:var(--ink);}
+  .plan .pr{font-size:12px;font-weight:700;color:var(--indigo);margin-top:2px;}
+  .plan .pk{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.25;}
+  .terms{display:flex;gap:8px;margin-top:14px;align-items:flex-start;cursor:pointer;}
+  .chk{width:16px;height:16px;border-radius:4px;background:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .terms span{font-size:11px;color:var(--muted);line-height:1.35;}
+  .cta-wrap{padding:8px 20px 22px;background:var(--canvas);}
+  .cta{width:100%;border:none;border-radius:16px;padding:14px;font-size:14px;font-weight:800;color:#fff;background:var(--indigo);display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 20px rgba(108,76,241,.3);cursor:pointer;}
+  .cta:active{transform:scale(.98);}
+  /* ---- Chat ---- */
+  .chat{background:var(--chatbg);}
+  .chead{background:var(--indigo);}
+  .chead .row{display:flex;align-items:center;gap:12px;padding:2px 16px 12px;}
+  .avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;}
+  .chead .nm{font-size:14px;font-weight:800;color:#fff;}
+  .chead .onl{font-size:11px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:5px;}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block;}
+  .msgs{flex:1;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:10px;}
+  .day{align-self:center;background:rgba(0,0,0,.06);color:var(--muted);font-size:10px;font-weight:600;padding:3px 12px;border-radius:20px;}
+  .row-u{display:flex;justify-content:flex-end;}
+  .row-b{display:flex;justify-content:flex-start;}
+  .bub{max-width:80%;padding:8px 12px;font-size:13px;line-height:1.35;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  .bub.u{background:var(--indigo);color:#fff;border-radius:16px;border-top-right-radius:4px;}
+  .bub.b{background:#fff;color:var(--ink);border-radius:16px;border-top-left-radius:4px;}
+  .time{margin-top:4px;font-size:10px;display:flex;justify-content:flex-end;align-items:center;gap:4px;}
+  .time.u{color:rgba(255,255,255,.7);}
+  .time.b{color:var(--muted);}
+  .fn{align-self:flex-start;display:flex;align-items:center;gap:8px;background:#E7F5F3;border:1px solid #BEE7E1;border-radius:20px;padding:6px 12px;}
+  .fn code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11px;color:#0E8C80;}
+  .typing{display:flex;gap:5px;align-items:center;padding:12px;}
+  .typing .d{width:7px;height:7px;border-radius:50%;background:#b9b6cf;display:inline-block;}
+  .hint{text-align:center;font-size:10.5px;color:var(--muted);padding:6px 0 0;}
+  .hint b{color:var(--indigo);}
+  .inbar{display:flex;align-items:center;gap:8px;padding:10px 12px 12px;background:#fff;border-top:1px solid var(--line);}
+  .inbar input{flex:1;background:var(--chatbg);border:none;outline:none;border-radius:20px;padding:11px 16px;font-size:13px;color:var(--ink);}
+  .sendbtn{width:40px;height:40px;border-radius:50%;background:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:none;cursor:pointer;}
+  .sendbtn:active{transform:scale(.94);}
+  svg{display:block;}
+</style></head>
+<body>
+
+<div class="caption">Prototipo interactivo — <b>Asistente Personal con IA</b><br>Suscríbete y presiona <b>Enter</b> para enviar los mensajes.</div>
+
+<div class="phone"><div class="screen">
+  <div class="notch"></div>
+
+  <!-- ============ INT-01 SUSCRIPCIÓN ============ -->
+  <div class="pane sub" id="screenSub">
+    <div class="status" style="color:var(--ink)">
+      <span>21:23</span>
+      <span class="icons">
+        <svg width="15" height="12" viewBox="0 0 20 16"><rect x="0" y="10" width="3" height="6" rx="1" fill="#16151F"/><rect x="5" y="6" width="3" height="10" rx="1" fill="#16151F"/><rect x="10" y="3" width="3" height="13" rx="1" fill="#16151F"/><rect x="15" y="0" width="3" height="16" rx="1" fill="#16151F"/></svg>
+        <svg width="15" height="12" viewBox="0 0 24 24" fill="none" stroke="#16151F" stroke-width="2"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="#16151F"/></svg>
+        <svg width="18" height="12" viewBox="0 0 26 14"><rect x="1" y="1" width="20" height="12" rx="3" fill="none" stroke="#16151F" stroke-width="1.5"/><rect x="3" y="3" width="16" height="8" rx="1.5" fill="#16151F"/><rect x="22" y="4.5" width="2.5" height="5" rx="1" fill="#16151F"/></svg>
+      </span>
+    </div>
+    <div class="body" id="subBody">
+      <div class="brand">
+        <div class="logo" id="brandLogo"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg></div>
+        <div><div class="n">Nova</div><div class="t">tu asistente personal</div></div>
+      </div>
+      <h1>Crea tu asistente en un minuto</h1>
+      <div class="sub-p">Te escribe por WhatsApp o Telegram y recuerda tus conversaciones.</div>
+
+      <span class="lab">Nombre completo</span>
+      <div class="field">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C4CF1" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        <input id="name" value="Ana Torres">
+      </div>
+
+      <span class="lab">Número de teléfono</span>
+      <div class="field">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C4CF1" stroke-width="2"><path d="M4 4h4l2 5-3 2a12 12 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 2 6a2 2 0 0 1 2-2z"/></svg>
+        <span class="pfx">🇪🇨 +593 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6B6980" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+        <input id="phone" value="99 123 4567">
+      </div>
+
+      <span class="lab">Correo electrónico</span>
+      <div class="field">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C4CF1" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        <input id="email" value="ana@correo.com">
+      </div>
+
+      <span class="lab">Cédula</span>
+      <div class="field">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C4CF1" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        <input id="cedula" placeholder="0912345678">
+      </div>
+
+      <span class="lab">¿Dónde quieres tu asistente?</span>
+      <div class="seg" id="chan">
+        <button class="on" data-v="wa"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"/></svg> WhatsApp</button>
+        <button data-v="tg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg> Telegram</button>
+      </div>
+
+      <span class="lab">Elige tu plan</span>
+      <div class="plans" id="plans">
+        <div class="plan" data-v="free"><div class="h">Gratis</div><div class="pr">$0 / mes</div><div class="pk">Recordatorios y respuestas básicas</div></div>
+        <div class="plan on" data-v="plus"><div class="h">Plus <svg class="pick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C4CF1" stroke-width="3"><path d="M5 12l5 5 9-11"/></svg></div><div class="pr">$4.99 / mes</div><div class="pk">Memoria robusta e integraciones</div></div>
+      </div>
+
+      <div class="terms" id="terms">
+        <div class="chk" id="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 12l5 5 9-11"/></svg></div>
+        <span>Acepto los términos y autorizo el tratamiento de mis datos personales.</span>
+      </div>
+    </div>
+    <div class="cta-wrap">
+      <button class="cta" id="createBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg> Crear mi asistente</button>
+    </div>
+  </div>
+
+  <!-- ============ INT-02 CONVERSACIÓN ============ -->
+  <div class="pane chat" id="screenChat" style="display:none;opacity:0;">
+    <div class="chead">
+      <div class="status" style="color:#fff">
+        <span>21:23</span>
+        <span class="icons">
+          <svg width="15" height="12" viewBox="0 0 20 16"><rect x="0" y="10" width="3" height="6" rx="1" fill="#fff"/><rect x="5" y="6" width="3" height="10" rx="1" fill="#fff"/><rect x="10" y="3" width="3" height="13" rx="1" fill="#fff"/><rect x="15" y="0" width="3" height="16" rx="1" fill="#fff"/></svg>
+          <svg width="15" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="#fff"/></svg>
+          <svg width="18" height="12" viewBox="0 0 26 14"><rect x="1" y="1" width="20" height="12" rx="3" fill="none" stroke="#fff" stroke-width="1.5"/><rect x="3" y="3" width="16" height="8" rx="1.5" fill="#fff"/><rect x="22" y="4.5" width="2.5" height="5" rx="1" fill="#fff"/></svg>
+        </span>
+      </div>
+      <div class="row">
+        <div class="avatar"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z"/></svg></div>
+        <div style="flex:1"><div class="nm">Nova</div><div class="onl"><span class="dot"></span> en línea</div></div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+      </div>
+    </div>
+    <div class="msgs" id="msgs"><div class="day">Hoy</div></div>
+    <div>
+      <div class="hint" id="hint">Presiona <b>Enter</b> para enviar</div>
+      <div class="inbar">
+        <input id="chatInput" placeholder="Escribe un mensaje…">
+        <button class="sendbtn" id="sendBtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+</div></div>
+
+<script>
+(function(){
+  var A = (typeof anime !== 'undefined') ? anime : null;
+  var $ = function(id){ return document.getElementById(id); };
+
+  // ---- Selección de canal / plan / términos (interactivo) ----
+  $('chan').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+    b.classList.add('on');
+  });
+  $('plans').addEventListener('click', function(e){
+    var pl = e.target.closest('.plan'); if(!pl) return;
+    this.querySelectorAll('.plan').forEach(function(x){
+      x.classList.remove('on'); var p = x.querySelector('.pick'); if(p) p.remove();
+    });
+    pl.classList.add('on');
+    if(!pl.querySelector('.pick')){
+      var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.setAttribute('class','pick'); svg.setAttribute('width','16'); svg.setAttribute('height','16');
+      svg.setAttribute('viewBox','0 0 24 24'); svg.setAttribute('fill','none'); svg.setAttribute('stroke','#6C4CF1'); svg.setAttribute('stroke-width','3');
+      svg.innerHTML='<path d="M5 12l5 5 9-11"/>';
+      pl.querySelector('.h').appendChild(svg);
+    }
+  });
+  var agreed = true;
+  $('terms').addEventListener('click', function(){
+    agreed = !agreed;
+    $('chk').style.background = agreed ? 'var(--indigo)' : '#fff';
+    $('chk').style.border = agreed ? 'none' : '1.5px solid var(--line)';
+    $('chk').innerHTML = agreed ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 12l5 5 9-11"/></svg>' : '';
+  });
+
+  // ---- Animación de entrada de la suscripción ----
+  window.addEventListener('load', function(){
+    if(A){
+      A({ targets:'.phone', scale:[0.97,1], opacity:[0,1], duration:500, easing:'easeOutCubic' });
+      A({ targets:'#subBody > *', translateY:[12,0], opacity:[0,1], delay:A.stagger(45,{start:150}), duration:420, easing:'easeOutCubic' });
+      A({ targets:'#brandLogo', rotate:[-12,0], scale:[0.6,1], duration:700, delay:150, easing:'easeOutBack' });
+    }
+  });
+
+  // ---- Guion de conversación preescrito ----
+  var script = [
+    { user:'Recuérdame llamar al dentista mañana a las 10am',
+      responses:[ {fn:'crear_recordatorio(fecha: mañana 10:00)'},
+                  {bot:'Listo ✅ Te recordaré <b>llamar al dentista mañana a las 10:00</b>. ¿Algo más?'} ] },
+    { user:'¿Y qué clima habrá?',
+      responses:[ {fn:'consultar_clima(ciudad: Guayaquil)'},
+                  {bot:'Mañana en Guayaquil: <b>28°</b> y parcialmente nublado ☁️. Buen día para salir.'} ] },
+    { user:'Gracias. Prefiero que me escribas en las mañanas',
+      responses:[ {bot:'Anotado 📝 Actualicé tus preferencias: te escribiré por las mañanas. Lo recordaré en nuestras próximas conversaciones.'} ] }
+  ];
+  var turn = 0, busy = false;
+
+  function firstName(){
+    var v = ($('name').value || '').trim();
+    return v ? v.split(/\s+/)[0] : 'Ana';
+  }
+  function now(){
+    var d = new Date();
+    return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
+  }
+  function scrollDown(){ var m=$('msgs'); m.scrollTop = m.scrollHeight; }
+  var CHECK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><path d="M2 13l4 4 8-9"/><path d="M10 17l2 0 8-9"/></svg>';
+
+  function animIn(el){
+    if(A){ A({ targets:el, opacity:[0,1], translateY:[10,0], scale:[0.96,1], duration:340, easing:'easeOutCubic' }); }
+    else { el.style.opacity=1; }
+  }
+  function addUser(text){
+    var row=document.createElement('div'); row.className='row-u';
+    row.innerHTML='<div class="bub u">'+text+'<div class="time u">'+now()+' '+CHECK+'</div></div>';
+    $('msgs').appendChild(row); animIn(row.querySelector('.bub')); scrollDown();
+  }
+  function addBot(html){
+    var row=document.createElement('div'); row.className='row-b';
+    row.innerHTML='<div class="bub b">'+html+'<div class="time b">'+now()+'</div></div>';
+    $('msgs').appendChild(row); animIn(row.querySelector('.bub')); scrollDown();
+  }
+  function addFn(label){
+    var row=document.createElement('div'); row.className='row-b';
+    row.innerHTML='<div class="fn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#12B5A5" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg><code>'+label+'</code></div>';
+    $('msgs').appendChild(row); animIn(row.querySelector('.fn')); scrollDown();
+  }
+  function showTyping(){
+    var row=document.createElement('div'); row.className='row-b';
+    row.innerHTML='<div class="bub b typing"><span class="d"></span><span class="d"></span><span class="d"></span></div>';
+    $('msgs').appendChild(row); animIn(row.querySelector('.bub')); scrollDown();
+    if(A){ A({ targets: row.querySelectorAll('.d'), translateY:[0,-5], opacity:[.35,1], direction:'alternate', loop:true, delay:A.stagger(120), duration:380, easing:'easeInOutSine' }); }
+    return row;
+  }
+  function removeTyping(row){ if(A) A.remove(row.querySelectorAll('.d')); row.remove(); }
+
+  function prefillNext(){
+    var inp=$('chatInput');
+    if(turn < script.length){ inp.value = script[turn].user; $('hint').style.display='block'; }
+    else { inp.value=''; inp.placeholder='Escribe un mensaje…'; $('hint').style.display='none'; }
+  }
+  function playResponses(list, done){
+    var i=0;
+    function next(){
+      if(i>=list.length){ done(); return; }
+      var r=list[i++];
+      if(r.fn){ addFn(r.fn); setTimeout(next, 520); }
+      else {
+        var t=showTyping();
+        setTimeout(function(){ removeTyping(t); addBot(r.bot); setTimeout(next, 420); }, 950);
+      }
+    }
+    setTimeout(next, 320);
+  }
+  function send(){
+    if(busy) return;
+    var inp=$('chatInput'); var text=(inp.value||'').trim();
+    if(!text) return;
+    busy=true; addUser(text); inp.value='';
+    var cur = script[turn];
+    var responses = cur ? cur.responses : [{bot:'Con gusto 😊 (esto es una demostración). ¿Algo más?'}];
+    playResponses(responses, function(){
+      if(turn < script.length) turn++;
+      busy=false; prefillNext();
+    });
+  }
+
+  // ---- Transición suscripción -> chat ----
+  function goToChat(){
+    var sub=$('screenSub'), chat=$('screenChat');
+    function reveal(){
+      sub.style.display='none';
+      chat.style.display='flex';
+      if(A){ A({ targets:chat, opacity:[0,1], translateX:[40,0], duration:380, easing:'easeOutCubic' }); }
+      else { chat.style.opacity=1; }
+      setTimeout(function(){
+        addBot('¡Hola, '+firstName()+'! 👋 Soy <b>Nova</b>, tu asistente personal. Ya quedaste suscrita. ¿En qué te ayudo hoy?');
+        prefillNext();
+        $('chatInput').focus();
+      }, 300);
+    }
+    if(A){ A({ targets:sub, opacity:[1,0], translateX:[0,-40], duration:300, easing:'easeInCubic', complete:reveal }); }
+    else { reveal(); }
+  }
+
+  $('createBtn').addEventListener('click', goToChat);
+  $('sendBtn').addEventListener('click', send);
+  $('chatInput').addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); send(); } });
+})();
+</script>
+</body></html>
