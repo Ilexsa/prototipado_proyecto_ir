@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagramas ArchiMate</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1d2330;--muted:#5d6678;--line:#dfe3ea;--accent:#2f5bd3;--warn:#b25c00;--warnbg:#fff4e5;--ok:#1e7a45}
+@media (prefers-color-scheme:dark){:root{--bg:#14171d;--card:#1d2129;--ink:#e6e9ef;--muted:#9aa3b5;--line:#323846;--accent:#7ea2ff;--warn:#ffb35c;--warnbg:#3a2a12;--ok:#5fd394}}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);padding:12px 16px 0}
+h1{font-size:18px;margin:0 0 2px}
+header p{margin:0 0 8px;color:var(--muted);font-size:12.5px}
+nav{display:flex;gap:4px;overflow-x:auto;padding-bottom:0}
+nav button{border:1px solid var(--line);border-bottom:none;background:var(--bg);color:var(--ink);padding:7px 12px;border-radius:8px 8px 0 0;cursor:pointer;white-space:nowrap;font:inherit;font-size:13px}
+nav button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+main{padding:16px;max-width:1400px;margin:0 auto}
+section.view{display:none}section.view.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:14px}
+.card h2{font-size:17px;margin:0 0 6px}.card h3{font-size:14.5px;margin:0 0 8px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 18px;font-size:13px}
+.meta b{color:var(--muted);font-weight:600}
+.canvas{overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.canvas svg{display:block}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.btns button{font:inherit;font-size:13px;padding:6px 12px;border-radius:7px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:var(--bg);font-weight:600}
+.sw{display:inline-block;width:11px;height:11px;border:1px solid #888;border-radius:2px;vertical-align:-1px;margin-right:5px}
+.warn{background:var(--warnbg);color:var(--warn);border:1px solid var(--warn);border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:13px}
+.warn ul{margin:4px 0 0 18px;padding:0}
+.ok{color:var(--ok);font-weight:600}
+ol.steps{margin:0;padding-left:20px}ol.steps li{margin:3px 0}
+.instr{white-space:pre-wrap;border-left:3px solid var(--accent);padding:6px 10px;background:var(--bg);border-radius:0 6px 6px 0;font-size:13px}
+.small{font-size:12px;color:var(--muted)}
+@media print{header nav,.btns{display:none}section.view{display:block;page-break-after:always}header{position:static}}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="ttl"></h1>
+  <p>Vistas ArchiMate 3.2 de referencia para construir en la herramienta de modelado. Colores y formas según la notación estándar; los IDs coinciden con el ADD.</p>
+  <nav id="tabs"></nav>
+</header>
+<main id="main"></main>
+
+<script>
+const PROJECT = /*PROJECT_START*/"Contact Center IA"/*PROJECT_END*/;
+const VIEWS = /*VIEWS_START*/[
+ {
+  "id": "V-01",
+  "name": "Stakeholders, drivers y metas",
+  "viewpoint": "Motivation",
+  "togafArtifact": "Driver/Goal/Objective catalog + Stakeholder Map",
+  "addSection": "3 Metas, objetivos y restricciones",
+  "purpose": "Mostrar por qué existe la iniciativa y qué se busca.",
+  "stakeholders": [
+   "STK-01 Gerencia Comercial",
+   "STK-03 Seguridad"
+  ],
+  "concerns": [
+   "Valor de negocio",
+   "Cumplimiento"
+  ],
+  "instructions": "Incluir stakeholders principales, drivers y metas. Usar relaciones de influencia con signo.",
+  "elements": [
+   {
+    "id": "STK-01",
+    "type": "stakeholder",
+    "name": "Gerencia Comercial",
+    "col": 0,
+    "row": 0
+   },
+   {
+    "id": "STK-03",
+    "type": "stakeholder",
+    "name": "Seguridad de la Información",
+    "col": 3,
+    "row": 0
+   },
+   {
+    "id": "DRV-01",
+    "type": "driver",
+    "name": "Alto costo de atención en call center",
+    "col": 0,
+    "row": 1
+   },
+   {
+    "id": "DRV-02",
+    "type": "driver",
+    "name": "Ley de Protección de Datos Personales",
+    "col": 3,
+    "row": 1
+   },
+   {
+    "id": "GOL-01",
+    "type": "goal",
+    "name": "Reducir costo por contacto 20%",
+    "col": 0,
+    "row": 2
+   },
+   {
+    "id": "GOL-02",
+    "type": "goal",
+    "name": "Cumplir LOPDP",
+    "col": 3,
+    "row": 2
+   },
+   {
+    "id": "PRN-01",
+    "type": "principle",
+    "name": "API-first",
+    "col": 1,
+    "row": 3
+   },
+   {
+    "id": "REQ-NF-01",
+    "type": "requirement",
+    "name": "Tiempo de respuesta p95 < 800 ms",
+    "col": 0,
+    "row": 3
+   },
+   {
+    "id": "CON-01",
+    "type": "constraint",
+    "name": "Datos personales no salen del país",
+    "col": 3,
+    "row": 3
+   }
+  ],
+  "relations": [
+   {
+    "type": "association",
+    "source": "STK-01",
+    "target": "DRV-01"
+   },
+   {
+    "type": "association",
+    "source": "STK-03",
+    "target": "DRV-02"
+   },
+   {
+    "type": "influence",
+    "source": "DRV-01",
+    "target": "GOL-01",
+    "sign": "+"
+   },
+   {
+    "type": "influence",
+    "source": "DRV-02",
+    "target": "GOL-02",
+    "sign": "+"
+   },
+   {
+    "type": "realization",
+    "source": "REQ-NF-01",
+    "target": "GOL-01"
+   },
+   {
+    "type": "realization",
+    "source": "PRN-01",
+    "target": "GOL-01"
+   },
+   {
+    "type": "realization",
+    "source": "CON-01",
+    "target": "GOL-02"
+   },
+   {
+    "type": "realization",
+    "source": "REQ-NF-01",
+    "target": "PRN-01"
+   }
+  ]
+ },
+ {
+  "id": "V-06",
+  "name": "Cooperación de aplicaciones — integración con API de IA",
+  "viewpoint": "Application Cooperation",
+  "togafArtifact": "Application Communication diagram",
+  "addSection": "6.3 Arquitectura de Aplicación",
+  "purpose": "Cómo los componentes intercambian información con la API externa.",
+  "stakeholders": [
+   "STK-02 Arquitectura"
+  ],
+  "concerns": [
+   "Integración",
+   "Seguridad"
+  ],
+  "instructions": "Mostrar componentes internos y externos, protocolos en las relaciones y zonas de red como agrupación.",
+  "elements": [
+   {
+    "id": "BB-01",
+    "type": "applicationComponent",
+    "name": "Plataforma Contact Center",
+    "col": 0,
+    "row": 1,
+    "ref": "REQ-F-01"
+   },
+   {
+    "id": "GRP-INT",
+    "type": "grouping",
+    "name": "Zona interna OpenShift",
+    "col": 1,
+    "row": 0,
+    "w": 2,
+    "h": 3
+   },
+   {
+    "id": "BB-02",
+    "type": "applicationComponent",
+    "name": "Orquestador de conversaciones",
+    "col": 1,
+    "row": 1,
+    "parent": "GRP-INT",
+    "ref": "REQ-F-02"
+   },
+   {
+    "id": "BB-03",
+    "type": "applicationComponent",
+    "name": "API Gateway",
+    "col": 2,
+    "row": 1,
+    "parent": "GRP-INT"
+   },
+   {
+    "id": "AS-01",
+    "type": "applicationService",
+    "name": "Clasificación de intención",
+    "col": 3,
+    "row": 0
+   },
+   {
+    "id": "API-EXT",
+    "type": "applicationComponent",
+    "name": "API de IA (Proveedor X)",
+    "col": 3,
+    "row": 1,
+    "ref": "API-01..API-03"
+   },
+   {
+    "id": "DO-01",
+    "type": "dataObject",
+    "name": "Transcripción de llamada",
+    "col": 1,
+    "row": 2,
+    "parent": "GRP-INT"
+   },
+   {
+    "id": "AI-01",
+    "type": "applicationInterface",
+    "name": "REST /v1/classify",
+    "col": 3,
+    "row": 2
+   }
+  ],
+  "relations": [
+   {
+    "type": "flow",
+    "source": "BB-01",
+    "target": "BB-02",
+    "label": "eventos Kafka"
+   },
+   {
+    "type": "flow",
+    "source": "BB-02",
+    "target": "BB-03",
+    "label": "HTTPS"
+   },
+   {
+    "type": "serving",
+    "source": "AS-01",
+    "target": "BB-03",
+    "label": "OAuth2 + mTLS"
+   },
+   {
+    "type": "realization",
+    "source": "API-EXT",
+    "target": "AS-01"
+   },
+   {
+    "type": "composition",
+    "source": "API-EXT",
+    "target": "AI-01"
+   },
+   {
+    "type": "access",
+    "source": "BB-02",
+    "target": "DO-01",
+    "accessType": "readwrite"
+   },
+   {
+    "type": "aggregation",
+    "source": "GRP-INT",
+    "target": "BB-02"
+   }
+  ]
+ },
+ {
+  "id": "V-08",
+  "name": "Tecnología y despliegue",
+  "viewpoint": "Implementation and Deployment",
+  "togafArtifact": "Application/Technology matrix",
+  "addSection": "6.4 Arquitectura Tecnológica",
+  "purpose": "Dónde se despliega cada componente.",
+  "stakeholders": [
+   "STK-04 Infraestructura"
+  ],
+  "concerns": [
+   "Despliegue"
+  ],
+  "elements": [
+   {
+    "id": "BB-02",
+    "type": "applicationComponent",
+    "name": "Orquestador de conversaciones",
+    "col": 0,
+    "row": 0
+   },
+   {
+    "id": "ART-01",
+    "type": "artifact",
+    "name": "orquestador:1.0 (imagen)",
+    "col": 0,
+    "row": 1
+   },
+   {
+    "id": "N-01",
+    "type": "node",
+    "name": "Clúster OpenShift PROD",
+    "col": 0,
+    "row": 2,
+    "w": 3,
+    "h": 2
+   },
+   {
+    "id": "SS-01",
+    "type": "systemSoftware",
+    "name": "Kafka",
+    "col": 1,
+    "row": 3,
+    "parent": "N-01"
+   },
+   {
+    "id": "SS-02",
+    "type": "systemSoftware",
+    "name": "PostgreSQL",
+    "col": 2,
+    "row": 3,
+    "parent": "N-01"
+   },
+   {
+    "id": "TS-01",
+    "type": "technologyService",
+    "name": "Hosting de contenedores",
+    "col": 2,
+    "row": 0
+   },
+   {
+    "id": "NET-01",
+    "type": "communicationNetwork",
+    "name": "Internet (salida controlada)",
+    "col": 3,
+    "row": 2
+   },
+   {
+    "id": "LOC-01",
+    "type": "location",
+    "name": "Data center Guayaquil",
+    "col": 3,
+    "row": 3
+   }
+  ],
+  "relations": [
+   {
+    "type": "realization",
+    "source": "ART-01",
+    "target": "BB-02"
+   },
+   {
+    "type": "assignment",
+    "source": "N-01",
+    "target": "ART-01"
+   },
+   {
+    "type": "composition",
+    "source": "N-01",
+    "target": "SS-01"
+   },
+   {
+    "type": "composition",
+    "source": "N-01",
+    "target": "SS-02"
+   },
+   {
+    "type": "serving",
+    "source": "TS-01",
+    "target": "BB-02"
+   },
+   {
+    "type": "realization",
+    "source": "N-01",
+    "target": "TS-01",
+    "via": [
+     [
+      2,
+      1.5
+     ]
+    ]
+   },
+   {
+    "type": "association",
+    "source": "NET-01",
+    "target": "N-01"
+   },
+   {
+    "type": "aggregation",
+    "source": "LOC-01",
+    "target": "N-01"
+   }
+  ]
+ }
+]/*VIEWS_END*/;
+
+/* ================= Metamodelo ================= */
+const C = {strategy:'#F5DEAA',business:'#FFFFB5',application:'#B5FFFF',technology:'#C9E7B7',physical:'#C9E7B7',motivation:'#CCCCFF',implementation:'#FFE0E0',implGreen:'#E0FFE0',location:'#FBB875',other:'#FFFFFF'};
+const LAYER_ES = {strategy:'Estrategia',business:'Negocio',application:'Aplicación',technology:'Tecnología',physical:'Física',motivation:'Motivación',implementation:'Implementación y Migración',other:'Otros'};
+const T = {};
+function def(layer, aspect, list){ list.forEach(([k,es,icon,x])=>{ T[k]={layer,aspect,es,icon:icon||k,x:x||(k[0].toUpperCase()+k.slice(1))}; }); }
+def('strategy','passive',[['resource','Recurso']]);
+def('strategy','behavior',[['capability','Capacidad'],['valueStream','Flujo de valor'],['courseOfAction','Curso de acción']]);
+def('business','active',[['businessActor','Actor de negocio','actor'],['businessRole','Rol de negocio','role'],['businessCollaboration','Colaboración de negocio','collab'],['businessInterface','Interfaz de negocio','iface']]);
+def('business','behavior',[['businessProcess','Proceso de negocio','process'],['businessFunction','Función de negocio','function'],['businessInteraction','Interacción de negocio','interaction'],['businessEvent','Evento de negocio','event'],['businessService','Servicio de negocio','service']]);
+def('business','passive',[['businessObject','Objeto de negocio','object'],['contract','Contrato'],['representation','Representación'],['product','Producto']]);
+def('application','active',[['applicationComponent','Componente de aplicación','component'],['applicationCollaboration','Colaboración de aplicación','collab'],['applicationInterface','Interfaz de aplicación','iface']]);
+def('application','behavior',[['applicationFunction','Función de aplicación','function'],['applicationInteraction','Interacción de aplicación','interaction'],['applicationProcess','Proceso de aplicación','process'],['applicationEvent','Evento de aplicación','event'],['applicationService','Servicio de aplicación','service']]);
+def('application','passive',[['dataObject','Objeto de datos','object']]);
+def('technology','active',[['node','Nodo'],['device','Dispositivo'],['systemSoftware','Software de sistema'],['technologyCollaboration','Colaboración tecnológica','collab'],['technologyInterface','Interfaz tecnológica','iface'],['path','Ruta'],['communicationNetwork','Red de comunicación','network']]);
+def('technology','behavior',[['technologyFunction','Función tecnológica','function'],['technologyProcess','Proceso tecnológico','process'],['technologyInteraction','Interacción tecnológica','interaction'],['technologyEvent','Evento tecnológico','event'],['technologyService','Servicio tecnológico','service']]);
+def('technology','passive',[['artifact','Artefacto']]);
+def('physical','active',[['equipment','Equipo'],['facility','Instalación'],['distributionNetwork','Red de distribución','distnet']]);
+def('physical','passive',[['material','Material']]);
+def('motivation','motivation',[['stakeholder','Stakeholder','role'],['driver','Driver'],['assessment','Evaluación'],['goal','Meta'],['outcome','Resultado'],['principle','Principio'],['requirement','Requisito'],['constraint','Restricción'],['meaning','Significado'],['value','Valor']]);
+def('implementation','behavior',[['workPackage','Paquete de trabajo'],['implementationEvent','Evento de implementación','event']]);
+def('implementation','passive',[['deliverable','Entregable'],['plateau','Meseta'],['gap','Brecha']]);
+def('other','composite',[['location','Ubicación'],['grouping','Agrupación']]);
+def('other','junction',[['andJunction','Unión (Y)','junction','AndJunction'],['orJunction','Unión (O)','junction','OrJunction']]);
+
+const R = {
+  composition:{es:'Composición',dash:'',start:'dFill',end:''},
+  aggregation:{es:'Agregación',dash:'',start:'dHollow',end:''},
+  assignment:{es:'Asignación',dash:'',start:'dot',end:'aFill'},
+  realization:{es:'Realización',dash:'6,4',start:'',end:'tri'},
+  serving:{es:'Servicio (sirve a)',dash:'',start:'',end:'aOpen'},
+  access:{es:'Acceso',dash:'2,3',start:'',end:''},
+  influence:{es:'Influencia',dash:'5,3',start:'',end:'aOpen'},
+  triggering:{es:'Disparo',dash:'',start:'',end:'aFill'},
+  flow:{es:'Flujo',dash:'9,4',start:'',end:'aFill'},
+  specialization:{es:'Especialización',dash:'',start:'',end:'tri'},
+  association:{es:'Asociación',dash:'',start:'',end:''}
+};
+const ACCESS_ES = {read:'lectura',write:'escritura',readwrite:'lectura/escritura',access:'acceso'};
+
+/* ================= Geometría ================= */
+const EW=156, EH=64, GY=30, OFF=20, TOPIN=24, SIDEIN=8;
+function gapX(view){ let m=0; (view.relations||[]).forEach(r=>{ const l=(r.label||'')+(r.type==='influence'&&r.sign?' '+r.sign:''); m=Math.max(m,l.length*6.2+16); }); return Math.round(Math.min(130,Math.max(36,m))); }
+const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function layout(view){
+  const GX=gapX(view), CW=EW+GX, CH=EH+GY;
+  const byId = {}; view.elements.forEach(e=>byId[e.id]=e);
+  const depth = e => { let d=0, p=e; const seen=new Set(); while(p && p.parent && byId[p.parent] && !seen.has(p.id)){seen.add(p.id); p=byId[p.parent]; d++;} return d; };
+  const order = [...view.elements].sort((a,b)=>depth(a)-depth(b));
+  const rect = {};
+  order.forEach(e=>{
+    const w=(e.w||1), h=(e.h||1);
+    let r={x:e.col*CW+GX/2+OFF, y:e.row*CH+GY/2+OFF, w:w*CW-GX, h:h*CH-GY};
+    if(T[e.type] && T[e.type].aspect==='junction'){ r={x:e.col*CW+CW/2+OFF-7,y:e.row*CH+CH/2+OFF-7,w:14,h:14}; }
+    const p = e.parent && rect[e.parent];
+    if(p){
+      const ix=p.x+SIDEIN, iy=p.y+TOPIN, ir=p.x+p.w-SIDEIN, ib=p.y+p.h-SIDEIN;
+      const x1=Math.max(r.x,ix), y1=Math.max(r.y,iy), x2=Math.min(r.x+r.w,ir), y2=Math.min(r.y+r.h,ib);
+      r={x:x1,y:y1,w:Math.max(40,x2-x1),h:Math.max(34,y2-y1)};
+    }
+    rect[e.id]=r;
+  });
+  let W=0,H=0; Object.values(rect).forEach(r=>{W=Math.max(W,r.x+r.w);H=Math.max(H,r.y+r.h);});
+  return {rect, byId, W:W+OFF+10, H:H+OFF+10, order, CW, CH};
+}
+
+function wrap(text, maxW, px){
+  const cw = px*0.56, max = Math.max(4, Math.floor(maxW/cw));
+  const words = String(text).split(/\s+/); const lines=[]; let cur='';
+  words.forEach(w=>{ while(w.length>max){ if(cur){lines.push(cur);cur='';} lines.push(w.slice(0,max-1)+'-'); w=w.slice(max-1);} const t=cur?cur+' '+w:w; if(t.length>max){lines.push(cur);cur=w;} else cur=t; });
+  if(cur) lines.push(cur); return lines;
+}
+
+/* ================= Íconos ================= */
+function icon(kind, x, y, fill){
+  const s='stroke="#000" stroke-width="1" fill="none"', f=`stroke="#000" stroke-width="1" fill="${fill}"`;
+  const P = (d,st=s)=>`<path d="${d}" ${st}/>`;
+  switch(kind){
+    case 'actor': return `<circle cx="${x+10}" cy="${y+3}" r="2.6" ${s}/>`+P(`M${x+10} ${y+5.6}v5 M${x+6} ${y+7.5}h8 M${x+10} ${y+10.6}l-3.5 4 M${x+10} ${y+10.6}l3.5 4`);
+    case 'role': return P(`M${x+6} ${y+2}h9 M${x+6} ${y+12}h9`)+`<ellipse cx="${x+6}" cy="${y+7}" rx="3" ry="5" ${s}/><ellipse cx="${x+15}" cy="${y+7}" rx="3" ry="5" ${f}/>`;
+    case 'collab': return `<circle cx="${x+7}" cy="${y+7}" r="5" ${s}/><circle cx="${x+13}" cy="${y+7}" r="5" ${s}/>`;
+    case 'iface': return `<circle cx="${x+14}" cy="${y+7}" r="4" ${s}/>`+P(`M${x+2} ${y+7}h8`);
+    case 'process': return P(`M${x+1} ${y+5}h11v-3.5l7 5.5l-7 5.5v-3.5h-11z`);
+    case 'function': return P(`M${x+4} ${y+14}v-9l6-4l6 4v9l-6-4z`);
+    case 'interaction': return P(`M${x+9} ${y+2}a5 5 0 0 0 0 10z M${x+11} ${y+2}a5 5 0 0 1 0 10z`);
+    case 'event': return P(`M${x+1} ${y+2}h13a4 5 0 0 1 0 10h-13l4-5z`);
+    case 'service': return `<rect x="${x+1}" y="${y+3}" width="18" height="8" rx="4" ${s}/>`;
+    case 'object': return `<rect x="${x+2}" y="${y+2}" width="16" height="11" ${s}/>`+P(`M${x+2} ${y+5}h16`);
+    case 'contract': return `<rect x="${x+2}" y="${y+2}" width="16" height="11" ${s}/>`+P(`M${x+2} ${y+5}h16 M${x+2} ${y+9}h16`);
+    case 'representation': case 'deliverable': return P(`M${x+2} ${y+2}h16v9q-4-3-8 0t-8 0z M${x+2} ${y+5}h16`);
+    case 'product': return `<rect x="${x+2}" y="${y+2}" width="16" height="11" ${s}/><rect x="${x+2}" y="${y+2}" width="8" height="3" ${s}/>`;
+    case 'component': return `<rect x="${x+5}" y="${y+1}" width="13" height="12" ${s}/><rect x="${x+2}" y="${y+3}" width="6" height="3" ${f}/><rect x="${x+2}" y="${y+8}" width="6" height="3" ${f}/>`;
+    case 'node': return P(`M${x+2} ${y+5}h12v9h-12z M${x+2} ${y+5}l3-3h12l-3 3 M${x+14} ${y+14}l3-3v-9`);
+    case 'device': return `<rect x="${x+3}" y="${y+1}" width="14" height="9" rx="1.5" ${s}/>`+P(`M${x+5} ${y+14}l2-4h6l2 4z`);
+    case 'systemSoftware': return `<circle cx="${x+12}" cy="${y+6}" r="5" ${s}/><circle cx="${x+9}" cy="${y+8}" r="5" ${f}/>`;
+    case 'path': return P(`M${x+2} ${y+7}h16 M${x+5} ${y+4}l-3 3l3 3 M${x+15} ${y+4}l3 3l-3 3`,'stroke="#000" stroke-width="1" fill="none" stroke-dasharray="2,1.5"');
+    case 'network': return P(`M${x+6} ${y+3}h11 M${x+3} ${y+11}h11 M${x+6} ${y+3}l-3 8 M${x+17} ${y+3}l-3 8`)+`<circle cx="${x+6}" cy="${y+3}" r="1.6" fill="#000"/><circle cx="${x+17}" cy="${y+3}" r="1.6" fill="#000"/><circle cx="${x+3}" cy="${y+11}" r="1.6" fill="#000"/><circle cx="${x+14}" cy="${y+11}" r="1.6" fill="#000"/>`;
+    case 'artifact': return P(`M${x+4} ${y+1}h8l4 4v9h-12z M${x+12} ${y+1}v4h4`);
+    case 'equipment': return `<circle cx="${x+8}" cy="${y+9}" r="4" ${s} stroke-dasharray="2,1"/><circle cx="${x+14}" cy="${y+4}" r="3" ${s} stroke-dasharray="2,1"/>`;
+    case 'facility': return P(`M${x+2} ${y+14}v-11h3v6l4-3v3l4-3v3l4-3v8z`);
+    case 'distnet': return P(`M${x+2} ${y+5}h16 M${x+2} ${y+10}h16 M${x+5} ${y+2}l-3 3l3 3 M${x+15} ${y+7}l3 3l-3 3`);
+    case 'material': return P(`M${x+6} ${y+2}h8l4 5.5l-4 5.5h-8l-4-5.5z`);
+    case 'driver': return `<circle cx="${x+10}" cy="${y+7}" r="5.5" ${s}/><circle cx="${x+10}" cy="${y+7}" r="1.5" fill="#000"/>`+P(`M${x+2.5} ${y+7}h15 M${x+10} ${y-0.5}v15 M${x+4.7} ${y+1.7}l10.6 10.6 M${x+15.3} ${y+1.7}l-10.6 10.6`);
+    case 'assessment': return `<circle cx="${x+8}" cy="${y+6}" r="4.5" ${s}/>`+P(`M${x+11.2} ${y+9.2}l5 5`);
+    case 'goal': return `<circle cx="${x+10}" cy="${y+7}" r="6" ${s}/><circle cx="${x+10}" cy="${y+7}" r="3.8" ${s}/><circle cx="${x+10}" cy="${y+7}" r="1.6" fill="#000"/>`;
+    case 'outcome': return `<circle cx="${x+9}" cy="${y+8}" r="5.5" ${s}/><circle cx="${x+9}" cy="${y+8}" r="3.3" ${s}/><circle cx="${x+9}" cy="${y+8}" r="1.3" fill="#000"/>`+P(`M${x+9} ${y+8}l8-7 M${x+14} ${y+1}h3v3`);
+    case 'principle': return `<rect x="${x+4}" y="${y+1}" width="12" height="13" ${s}/><text x="${x+10}" y="${y+12}" font-size="11" font-weight="700" text-anchor="middle" font-family="Arial">!</text>`;
+    case 'requirement': return P(`M${x+5} ${y+2}h14l-4 10h-14z`);
+    case 'constraint': return P(`M${x+5} ${y+2}h14l-4 10h-14z M${x+8} ${y+2}l-4 10`);
+    case 'meaning': return P(`M${x+5} ${y+11}a3 3 0 0 1 0-6a4 4 0 0 1 7-2a3.5 3.5 0 0 1 5 3a3 3 0 0 1-2 5z`);
+    case 'value': return `<ellipse cx="${x+10}" cy="${y+7}" rx="8" ry="5" ${s}/>`;
+    case 'resource': return `<rect x="${x+2}" y="${y+4}" width="14" height="8" rx="2" ${s}/><rect x="${x+16}" y="${y+6.5}" width="2" height="3" ${s}/>`+P(`M${x+6} ${y+6}v4 M${x+9} ${y+6}v4 M${x+12} ${y+6}v4`);
+    case 'capability': return `<rect x="${x+12}" y="${y+2}" width="5" height="4" ${s}/><rect x="${x+7}" y="${y+6}" width="5" height="4" ${s}/><rect x="${x+12}" y="${y+6}" width="5" height="4" ${s}/><rect x="${x+2}" y="${y+10}" width="5" height="4" ${s}/><rect x="${x+7}" y="${y+10}" width="5" height="4" ${s}/><rect x="${x+12}" y="${y+10}" width="5" height="4" ${s}/>`;
+    case 'valueStream': return P(`M${x+1} ${y+2}h13l5 5l-5 5h-13l5-5z`);
+    case 'courseOfAction': return `<circle cx="${x+13}" cy="${y+5}" r="4" ${s}/><circle cx="${x+13}" cy="${y+5}" r="1.5" fill="#000"/>`+P(`M${x+2} ${y+14}q2-7 8-8 M${x+8} ${y+4}l2 2l-2.5 1.5`);
+    case 'workPackage': return P(`M${x+15} ${y+4}a6 5 0 1 0 1 6 M${x+13} ${y+3}l2.5 1l-0.5 2.8`);
+    case 'plateau': return P(`M${x+8} ${y+3}h11 M${x+5} ${y+7}h11 M${x+2} ${y+11}h11`,'stroke="#000" stroke-width="2" fill="none"');
+    case 'gap': return `<ellipse cx="${x+10}" cy="${y+7}" rx="6" ry="5" ${s}/>`+P(`M${x+1} ${y+5.5}h18 M${x+1} ${y+8.5}h18`);
+    case 'location': return P(`M${x+10} ${y+14}l-4.5-6.5a5 5 0 1 1 9 0z`);
+    default: return '';
+  }
+}
+
+/* ================= Render de elementos ================= */
+function fillOf(t){ if(!T[t]) return '#eee'; if(t==='plateau'||t==='gap') return C.implGreen; if(t==='location') return C.location; return C[T[t].layer]||'#fff'; }
+
+function drawElement(e, r, hasKids){
+  const t=T[e.type]; const fill=fillOf(e.type);
+  if(!t) return `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="#fdd" stroke="#c00" stroke-dasharray="3,2"/><text x="${r.x+6}" y="${r.y+16}" font-size="11">${esc(e.name)} (tipo desconocido: ${esc(e.type)})</text>`;
+  let shape='';
+  if(t.aspect==='junction'){
+    return `<circle cx="${r.x+7}" cy="${r.y+7}" r="7" fill="${e.type==='andJunction'?'#000':'#fff'}" stroke="#000"/>`;
+  }
+  if(e.type==='grouping'){
+    const tw=Math.min(r.w-4, Math.max(70, String(e.name).length*7+16));
+    return `<g><path d="M${r.x} ${r.y+18}V${r.y}h${tw}v18h${r.w-tw}v${r.h-18}h-${r.w}z" fill="none" stroke="#555" stroke-dasharray="6,4"/><text x="${r.x+6}" y="${r.y+13}" font-size="12" font-weight="600">${esc(e.name)}</text></g>`;
+  }
+  if(t.aspect==='motivation'){
+    const c=9; shape=`<path d="M${r.x+c} ${r.y}h${r.w-2*c}l${c} ${c}v${r.h-2*c}l-${c} ${c}h-${r.w-2*c}l-${c}-${c}v-${r.h-2*c}z" fill="${fill}" stroke="#333"/>`;
+  } else if(t.aspect==='behavior'){
+    shape=`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="10" fill="${fill}" stroke="#333"/>`;
+  } else {
+    shape=`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="${fill}" stroke="#333"/>`;
+  }
+  const ic = icon(t.icon, r.x+r.w-25, r.y+5, fill);
+  let txt='';
+  const px=12;
+  if(hasKids){
+    const lines=wrap(e.name, r.w-40, px).slice(0,1);
+    txt=`<text x="${r.x+7}" y="${r.y+16}" font-size="${px}" font-weight="600">${esc(lines[0])}</text>`;
+  } else {
+    let lines=wrap(e.name, r.w-(r.w<120?10:34), px); const maxL=Math.max(1,Math.floor((r.h-8)/15)); if(lines.length>maxL){lines=lines.slice(0,maxL); lines[maxL-1]=lines[maxL-1].replace(/.{0,2}$/,'…');}
+    const y0=r.y+r.h/2-(lines.length-1)*7.5+4;
+    txt=lines.map((l,i)=>`<text x="${r.x+r.w/2}" y="${y0+i*15}" font-size="${px}" text-anchor="middle">${esc(l)}</text>`).join('');
+  }
+  return `<g>${shape}${ic}${txt}</g>`;
+}
+
+/* ================= Relaciones ================= */
+function defs(p){
+  return `<defs>
+  <marker id="${p}aFill" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" fill="#000"/></marker>
+  <marker id="${p}aOpen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10" fill="none" stroke="#000" stroke-width="1.2"/></marker>
+  <marker id="${p}tri" viewBox="0 0 12 12" refX="12" refY="6" markerWidth="13" markerHeight="13" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L12 6L0 12z" fill="#fff" stroke="#000"/></marker>
+  <marker id="${p}dFill" viewBox="0 0 16 10" refX="0" refY="5" markerWidth="16" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 5L8 0L16 5L8 10z" fill="#000"/></marker>
+  <marker id="${p}dHollow" viewBox="0 0 16 10" refX="0" refY="5" markerWidth="16" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0.5 5L8 0.5L15.5 5L8 9.5z" fill="#fff" stroke="#000"/></marker>
+  <marker id="${p}dot" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><circle cx="4" cy="4" r="3.5" fill="#000"/></marker>
+  <marker id="${p}acc" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L8 4L0 8" fill="none" stroke="#000"/></marker>
+  <marker id="${p}half" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5" fill="none" stroke="#000"/></marker>
+  </defs>`;
+}
+
+function clip(r, from, to){
+  const cx=r.x+r.w/2, cy=r.y+r.h/2; const dx=to.x-cx, dy=to.y-cy;
+  if(dx===0&&dy===0) return {x:cx,y:cy};
+  const tx = dx!==0 ? (r.w/2)/Math.abs(dx) : Infinity, ty = dy!==0 ? (r.h/2)/Math.abs(dy) : Infinity;
+  const t=Math.min(tx,ty,1); return {x:cx+dx*t, y:cy+dy*t};
+}
+const center = r => ({x:r.x+r.w/2, y:r.y+r.h/2});
+
+function isAncestor(byId, a, b){ let p=byId[b]; const seen=new Set(); while(p && p.parent && !seen.has(p.id)){ seen.add(p.id); if(p.parent===a) return true; p=byId[p.parent]; } return false; }
+function nestedRel(rel, byId){ return ['composition','aggregation','assignment'].includes(rel.type) && byId[rel.target] && byId[rel.target].parent===rel.source; }
+
+function drawRelation(rel, L, p){
+  const {rect, byId} = L; const rs=rect[rel.source], rt=rect[rel.target]; const def=R[rel.type];
+  if(!rs||!rt||!def) return '';
+  if(nestedRel(rel, byId)) return '';
+  const via=(rel.via||[]).map(([c,r])=>({x:c*L.CW+L.CW/2+OFF, y:r*L.CH+L.CH/2+OFF}));
+  const cs=center(rs), ct=center(rt);
+  const a=clip(rs, cs, via[0]||ct), b=clip(rt, ct, via[via.length-1]||cs);
+  const pts=[a,...via,b];
+  let ms='', me='';
+  if(rel.type==='access'){ const at=rel.accessType||'write'; if(at==='write'||at==='readwrite') me=`url(#${p}acc)`; if(at==='read'||at==='readwrite') ms=`url(#${p}acc)`; }
+  else { if(def.start) ms=`url(#${p}${def.start})`; if(def.end) me=`url(#${p}${def.end})`; if(rel.type==='association'&&rel.directed) me=`url(#${p}half)`; }
+  const d='M'+pts.map(q=>`${q.x.toFixed(1)} ${q.y.toFixed(1)}`).join(' L');
+  let out=`<path d="${d}" fill="none" stroke="#000" stroke-width="1.2" ${def.dash?`stroke-dasharray="${def.dash}"`:''} ${ms?`marker-start="${ms}"`:''} ${me?`marker-end="${me}"`:''}/>`;
+  let label = rel.label||''; if(rel.type==='influence'&&rel.sign) label = (label?label+' ':'')+rel.sign;
+  if(label){
+    let best=0,bl=-1; for(let i=0;i<pts.length-1;i++){ const l=Math.hypot(pts[i+1].x-pts[i].x,pts[i+1].y-pts[i].y); if(l>bl){bl=l;best=i;} }
+    const mx=(pts[best].x+pts[best+1].x)/2, my=(pts[best].y+pts[best+1].y)/2; const lw=label.length*6.2+8;
+    out+=`<rect x="${mx-lw/2}" y="${my-8}" width="${lw}" height="15" fill="#fff" fill-opacity="0.92"/><text x="${mx}" y="${my+3.5}" font-size="11" text-anchor="middle" font-style="italic">${esc(label)}</text>`;
+  }
+  return out;
+}
+
+function svgFor(view, idx){
+  const L=layout(view); const p='v'+idx+'_';
+  const kids=new Set(view.elements.filter(e=>e.parent).map(e=>e.parent));
+  let body=L.order.map(e=>drawElement(e, L.rect[e.id], kids.has(e.id))).join('');
+  body+=(view.relations||[]).map(r=>drawRelation(r,L,p)).join('');
+  const W=Math.max(L.W,360), H=Math.max(L.H,160);
+  const title=`<text x="${OFF}" y="15" font-size="12" font-weight="700">${esc(view.id)} — ${esc(view.name)}</text><text x="${W-10}" y="15" font-size="10.5" text-anchor="end" fill="#555">ArchiMate · ${esc(view.viewpoint||'')}</text>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H+14}" viewBox="0 -4 ${W} ${H+14}" font-family="Arial, Helvetica, sans-serif">${defs(p)}<rect x="0" y="-4" width="${W}" height="${H+14}" fill="#fff"/>${title}<g transform="translate(0,6)">${body}</g></svg>`;
+}
+
+/* ================= Validación ================= */
+const ASP = t => T[t] ? T[t].aspect : null;
+function validate(view, allEls){
+  const w=[]; const byId={}; const seen=new Set();
+  (view.elements||[]).forEach(e=>{
+    if(!e.id) w.push(`Elemento sin id: "${e.name}"`);
+    if(seen.has(e.id)) w.push(`ID repetido en la vista: ${e.id}`); seen.add(e.id); byId[e.id]=e;
+    if(!T[e.type]) w.push(`${e.id}: tipo desconocido "${e.type}"`);
+    if(e.id && !/^[A-Za-z][A-Za-z0-9_.-]*$/.test(e.id)) w.push(`${e.id}: el ID debe empezar con letra y usar solo letras, números, guiones, punto o guion bajo`);
+    const g=allEls[e.id]; if(g && (g.type!==e.type || g.name!==e.name)) w.push(`${e.id}: mismo ID con distinto tipo/nombre en otra vista ("${g.name}" / ${g.type})`);
+    if(e.parent && !view.elements.some(x=>x.id===e.parent)) w.push(`${e.id}: parent "${e.parent}" no existe en la vista`);
+  });
+  (view.relations||[]).forEach((r,i)=>{
+    const s=byId[r.source], t=byId[r.target], tag=`Relación ${i+1} (${r.source} → ${r.target})`;
+    if(!R[r.type]){ w.push(`${tag}: tipo de relación desconocido "${r.type}"`); return; }
+    if(!s||!t){ w.push(`${tag}: origen o destino no existe en la vista`); return; }
+    const as=ASP(s.type), at=ASP(t.type); if(!as||!at) return;
+    if(as==='junction'||at==='junction') return;
+    const isComp = x => x==='composite';
+    switch(r.type){
+      case 'access': if(at!=='passive' || ['deliverable','plateau','gap','resource'].includes(t.type)) w.push(`${tag}: access debe apuntar a un objeto pasivo (objeto de negocio/datos, artefacto, contrato…)`); if(as==='passive'||as==='motivation') w.push(`${tag}: access debe salir de un comportamiento o estructura activa`); break;
+      case 'serving': if(as==='passive'||as==='motivation'||at==='passive'||at==='motivation') w.push(`${tag}: serving no aplica a objetos pasivos ni a elementos de motivación`); break;
+      case 'assignment': if((as==='passive'&&s.type!=='resource')||as==='motivation') w.push(`${tag}: assignment debe salir de una estructura activa (o recurso)`); if(at==='motivation'||(at==='passive'&&!['artifact','deliverable'].includes(t.type))) w.push(`${tag}: assignment va hacia comportamiento, rol o artefacto (no a pasivos/motivación)`); if(as==='behavior') w.push(`${tag}: assignment no sale de un comportamiento`); break;
+      case 'realization': if(as==='motivation' && at!=='motivation') w.push(`${tag}: un elemento de motivación solo realiza otros de motivación (requisito → componente va al revés)`); if(at==='active' && !['applicationComponent','node','systemSoftware','device'].includes(t.type)) w.push(`${tag}: realization hacia estructura activa es poco común; verifica`); break;
+      case 'triggering': case 'flow': { const impl = x => T[x.type].layer==='implementation'; if(!(impl(s)&&impl(t)) && (as==='passive'||at==='passive'||as==='motivation'||at==='motivation')) w.push(`${tag}: ${r.type} solo entre comportamientos/estructuras activas (o paquetes de trabajo, mesetas, eventos)`); break; }
+      case 'influence': if(at!=='motivation') w.push(`${tag}: influence debe apuntar a un elemento de motivación`); break;
+      case 'specialization': if(s.type!==t.type) w.push(`${tag}: specialization solo entre elementos del mismo tipo`); break;
+      case 'composition': case 'aggregation': if(as==='motivation' && at!=='motivation') w.push(`${tag}: ${r.type} de motivación hacia núcleo no es válido`); break;
+    }
+    if(r.type==='access' && r.accessType && !ACCESS_ES[r.accessType]) w.push(`${tag}: accessType debe ser read, write, readwrite o access`);
+    if(isComp(as) && !['aggregation','composition','association'].includes(r.type)) w.push(`${tag}: desde ${T[s.type].es} usa aggregation/composition/association`);
+  });
+  return w;
+}
+
+/* ================= Tablas y pasos ================= */
+function relLabel(r){ let s=R[r.type]?R[r.type].es:r.type; if(r.type==='access') s+=` (${ACCESS_ES[r.accessType||'write']||r.accessType})`; if(r.type==='influence'&&r.sign) s+=` (${r.sign})`; if(r.type==='association'&&r.directed) s+=' (dirigida)'; return s; }
+
+function steps(view, firstSeen){
+  const byId={}; view.elements.forEach(e=>byId[e.id]=e);
+  const out=[];
+  out.push(`Crear la vista <b>${esc(view.id)} — ${esc(view.name)}</b> y asignarle el viewpoint <b>${esc(view.viewpoint||'—')}</b> (Archi: Propiedades de la vista → Viewpoint; HOPEX/otras: plantilla de diagrama ArchiMate equivalente).`);
+  const groups={};
+  view.elements.forEach(e=>{ const l=T[e.type]?T[e.type].layer:'other'; (groups[l]=groups[l]||[]).push(e); });
+  ['motivation','strategy','business','application','technology','physical','implementation','other'].forEach(l=>{
+    if(!groups[l]) return;
+    const items=groups[l].map(e=>{ const reuse=firstSeen[e.id] && firstSeen[e.id]!==view.id ? ` <span class="small">(reutilizar, creado en ${esc(firstSeen[e.id])})</span>` : ''; return `${esc(e.name)} <span class="small">[${T[e.type]?T[e.type].es:e.type}]</span>${reuse}`; });
+    out.push(`Capa <b>${LAYER_ES[l]}</b>: ${items.join('; ')}.`);
+  });
+  const nest=view.elements.filter(e=>e.parent);
+  if(nest.length) out.push('Anidar: '+nest.map(e=>`${esc(e.name)} dentro de ${esc(byId[e.parent]?byId[e.parent].name:e.parent)}`).join('; ')+'. Si la herramienta pregunta, crear la relación indicada en la tabla (no solo el anidamiento visual).');
+  out.push('Ubicar los elementos según la cuadrícula del diagrama de referencia (capas de arriba hacia abajo; servicios encima de quien los realiza).');
+  if((view.relations||[]).length) out.push('Crear las relaciones en el orden de la tabla de relaciones; revisar dirección y tipo (en Archi el "magic connector" solo ofrece las válidas).');
+  out.push('Registrar en cada elemento la propiedad <b>ID</b> con el identificador de trazabilidad (y <b>Ref</b> si aplica), para mantener la consistencia con el ADD.');
+  out.push(`Exportar la imagen del diagrama e insertarla en el ADD${view.addSection?`, sección <b>${esc(view.addSection)}</b>`:''}, con su número de figura y título.`);
+  return out;
+}
+
+function tables(view){
+  const byId={}; view.elements.forEach(e=>byId[e.id]=e);
+  const er=view.elements.map(e=>{ const t=T[e.type]; return `<tr><td>${esc(e.id)}</td><td>${esc(e.name)}</td><td><span class="sw" style="background:${fillOf(e.type)}"></span>${t?t.es:esc(e.type)}</td><td>${t?LAYER_ES[t.layer]:'—'}</td><td>${esc(e.ref||'')}</td><td>${esc(e.note||'')}</td></tr>`; }).join('');
+  const rr=(view.relations||[]).map((r,i)=>{ const s=byId[r.source], t=byId[r.target]; return `<tr><td>${i+1}</td><td>${esc(s?s.name:r.source)} <span class="small">${esc(r.source)}</span></td><td>${relLabel(r)}</td><td>${esc(t?t.name:r.target)} <span class="small">${esc(r.target)}</span></td><td>${esc(r.label||'')}</td><td>${nestedRel(r,byId)?'Anidamiento':'Línea'}</td><td>${esc(r.note||'')}</td></tr>`; }).join('');
+  return `<div class="card"><h3>Catálogo de elementos</h3><div class="tbl"><table><tr><th>ID</th><th>Nombre</th><th>Tipo ArchiMate</th><th>Capa</th><th>Trazabilidad</th><th>Nota</th></tr>${er}</table></div></div>
+  <div class="card"><h3>Relaciones</h3><div class="tbl"><table><tr><th>#</th><th>Origen</th><th>Relación</th><th>Destino</th><th>Etiqueta</th><th>Dibujo</th><th>Nota</th></tr>${rr||'<tr><td colspan="7">Sin relaciones</td></tr>'}</table></div></div>`;
+}
+
+/* ================= Exportaciones ================= */
+function download(name, content, mime){ const b=new Blob([content],{type:mime}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500); }
+function downloadPng(svgText, name){
+  const img=new Image(); const url=URL.createObjectURL(new Blob([svgText],{type:'image/svg+xml'}));
+  img.onload=()=>{ const s=2, c=document.createElement('canvas'); c.width=img.width*s; c.height=img.height*s; const g=c.getContext('2d'); g.scale(s,s); g.drawImage(img,0,0); URL.revokeObjectURL(url); c.toBlob(b=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; a.click(); }); };
+  img.src=url;
+}
+function model(){
+  const els={}, rels=[], relKey={};
+  VIEWS.forEach(v=>{ (v.elements||[]).forEach(e=>{ if(!els[e.id]) els[e.id]=e; }); (v.relations||[]).forEach(r=>{ const k=[r.type,r.source,r.target,r.accessType||'',r.sign||''].join('|'); if(!relKey[k]){ relKey[k]='R-'+(rels.length+1); rels.push({...r,rid:relKey[k]}); } }); });
+  return {els, rels, relKey};
+}
+const xid = s => 'id-'+String(s).replace(/[^A-Za-z0-9_.-]/g,'_');
+function exchangeXml(){
+  const {els, rels, relKey}=model(); const X=s=>esc(s);
+  const AT={read:'Read',write:'Write',readwrite:'ReadWrite',access:'Access'};
+  let x=`<?xml version="1.0" encoding="UTF-8"?>\n<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="id-model">\n  <name xml:lang="es">${X(PROJECT)}</name>\n  <elements>\n`;
+  Object.values(els).forEach(e=>{ if(!T[e.type]) return; x+=`    <element identifier="${xid(e.id)}" xsi:type="${T[e.type].x}"><name xml:lang="es">${X(e.name)}</name>${e.ref||e.note?`<documentation xml:lang="es">${X([e.ref?'Ref: '+e.ref:'',e.note||''].filter(Boolean).join(' · '))}</documentation>`:''}</element>\n`; });
+  x+=`  </elements>\n  <relationships>\n`;
+  rels.forEach(r=>{ if(!R[r.type]||!els[r.source]||!els[r.target]) return; const t=r.type[0].toUpperCase()+r.type.slice(1); let extra=''; if(r.type==='access') extra=` accessType="${AT[r.accessType||'write']||'Access'}"`; if(r.type==='influence'&&r.sign) extra=` modifier="${X(r.sign)}"`; if(r.type==='association') extra=` isDirected="${r.directed?'true':'false'}"`; x+=`    <relationship identifier="${xid(r.rid)}" source="${xid(r.source)}" target="${xid(r.target)}" xsi:type="${t}"${extra}>${r.label?`<name xml:lang="es">${X(r.label)}</name>`:''}</relationship>\n`; });
+  x+=`  </relationships>\n  <views>\n    <diagrams>\n`;
+  VIEWS.forEach((v,vi)=>{
+    const L=layout(v); const kidsOf={}; (v.elements||[]).forEach(e=>{ const p=e.parent&&L.byId[e.parent]?e.parent:'__root'; (kidsOf[p]=kidsOf[p]||[]).push(e); });
+    const nid=id=>`n${vi}-${xid(id).slice(3)}`;
+    const node=(e,ind)=>{ const r=L.rect[e.id]; if(!T[e.type]) return ''; const ch=(kidsOf[e.id]||[]).map(k=>node(k,ind+'  ')).join(''); return `${ind}<node identifier="${nid(e.id)}" elementRef="${xid(e.id)}" xsi:type="Element" x="${Math.round(r.x)}" y="${Math.round(r.y)}" w="${Math.round(r.w)}" h="${Math.round(r.h)}">${ch?'\n'+ch+ind:''}</node>\n`; };
+    x+=`      <view identifier="${xid(v.id)}" xsi:type="Diagram"${v.viewpoint?` viewpoint="${X(v.viewpoint)}"`:''}>\n        <name xml:lang="es">${X(v.id+' — '+v.name)}</name>\n${(kidsOf.__root||[]).map(e=>node(e,'        ')).join('')}`;
+    (v.relations||[]).forEach((r,ri)=>{ const k=[r.type,r.source,r.target,r.accessType||'',r.sign||''].join('|'); if(!relKey[k]||nestedRel(r,L.byId)||!L.byId[r.source]||!L.byId[r.target]) return; x+=`        <connection identifier="c${vi}-${ri}" relationshipRef="${xid(relKey[k])}" xsi:type="Relationship" source="${nid(r.source)}" target="${nid(r.target)}"/>\n`; });
+    x+=`      </view>\n`;
+  });
+  x+=`    </diagrams>\n  </views>\n</model>\n`;
+  return x;
+}
+function csvArchi(){
+  const {els, rels}=model(); const q=s=>'"'+String(s==null?'':s).replace(/"/g,'""')+'"';
+  let e='"ID","Type","Name","Documentation","Specialization"\n', r='"ID","Type","Name","Documentation","Source","Target","Specialization"\n', p='"ID","Key","Value"\n';
+  Object.values(els).forEach(x=>{ if(!T[x.type]) return; const ty=T[x.type].aspect==='junction'?'Junction':T[x.type].x; e+=[q(xid(x.id)),q(ty),q(x.name),q(x.note||''),q('')].join(',')+'\n'; p+=[q(xid(x.id)),q('ID'),q(x.id)].join(',')+'\n'; if(x.ref) p+=[q(xid(x.id)),q('Ref'),q(x.ref)].join(',')+'\n'; });
+  rels.forEach(x=>{ if(!R[x.type]) return; r+=[q(xid(x.rid)),q(x.type[0].toUpperCase()+x.type.slice(1)+'Relationship'),q(x.label||''),q(x.note||''),q(xid(x.source)),q(xid(x.target)),q('')].join(',')+'\n'; });
+  return {e,r,p};
+}
+
+/* ================= Leyenda ================= */
+function legendSvg(){
+  const types=Object.keys(R); const p='lg_'; let y=18, body='';
+  types.forEach((t,i)=>{ const def=R[t]; const yy=y+i*26; let ms=def.start?`url(#${p}${def.start})`:'', me=def.end?`url(#${p}${def.end})`:''; if(t==='access') me=`url(#${p}acc)`; body+=`<path d="M20 ${yy}H170" stroke="#000" stroke-width="1.2" fill="none" ${def.dash?`stroke-dasharray="${def.dash}"`:''} ${ms?`marker-start="${ms}"`:''} ${me?`marker-end="${me}"`:''}/><text x="185" y="${yy+4}" font-size="12">${def.es}${t==='access'?' (escritura)':''}</text>`; });
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="360" height="${types.length*26+10}" font-family="Arial">${defs(p)}<rect width="100%" height="100%" fill="#fff"/>${body}</svg>`;
+}
+function elementLegend(){
+  const layers={}; Object.entries(T).forEach(([k,t])=>{(layers[t.layer]=layers[t.layer]||[]).push(k);});
+  return Object.entries(layers).map(([l,ks])=>{
+    const cols=4, cw=172, ch=58; const rows=Math.ceil(ks.length/cols);
+    const body=ks.map((k,i)=>{ const r={x:(i%cols)*cw+6,y:Math.floor(i/cols)*ch+6,w:cw-12,h:ch-12}; return drawElement({id:k,type:k,name:T[k].es},r,false); }).join('');
+    return `<h3 style="margin:14px 0 6px">${LAYER_ES[l]}</h3><div class="canvas"><svg xmlns="http://www.w3.org/2000/svg" width="${cols*cw}" height="${rows*ch+4}" font-family="Arial">${body}</svg></div>`;
+  }).join('');
+}
+
+/* ================= Página ================= */
+function build(){
+  document.getElementById('ttl').textContent = PROJECT + ' — Diagramas ArchiMate';
+  document.title = PROJECT + ' — Diagramas ArchiMate';
+  const tabs=document.getElementById('tabs'), main=document.getElementById('main');
+  const allEls={}, firstSeen={}; const svgs=[];
+  const warnings = VIEWS.map(v=>{ const w=validate(v, allEls); (v.elements||[]).forEach(e=>{ if(!allEls[e.id]) allEls[e.id]=e; if(!firstSeen[e.id]) firstSeen[e.id]=v.id; }); return w; });
+  const secs=[]; const add=(label,html)=>{ const b=document.createElement('button'); b.textContent=label; tabs.appendChild(b); const s=document.createElement('section'); s.className='view'; s.innerHTML=html; main.appendChild(s); secs.push([b,s]); b.onclick=()=>{secs.forEach(([bb,ss])=>{bb.classList.remove('on');ss.classList.remove('on');}); b.classList.add('on'); s.classList.add('on'); window.scrollTo(0,0);}; return s; };
+
+  const totalW=warnings.reduce((a,w)=>a+w.length,0);
+  add('Resumen', `<div class="card"><h2>Resumen de vistas</h2><p class="small">Construye las vistas en este orden. Los elementos repetidos entre vistas son el mismo elemento del modelo: créalo una vez y reutilízalo.</p><div class="tbl"><table><tr><th>Vista</th><th>Nombre</th><th>Viewpoint ArchiMate</th><th>Artefacto TOGAF</th><th>Sección ADD</th><th>Elem.</th><th>Rel.</th><th>Validación</th></tr>${VIEWS.map((v,i)=>`<tr><td>${esc(v.id)}</td><td>${esc(v.name)}</td><td>${esc(v.viewpoint||'')}</td><td>${esc(v.togafArtifact||'')}</td><td>${esc(v.addSection||'')}</td><td>${(v.elements||[]).length}</td><td>${(v.relations||[]).length}</td><td>${warnings[i].length?`<span style="color:var(--warn)">⚠ ${warnings[i].length}</span>`:'<span class="ok">✔</span>'}</td></tr>`).join('')}</table></div>${totalW?`<p class="small">Hay ${totalW} advertencia(s) de notación; revísalas en cada vista.</p>`:''}</div>`);
+
+  VIEWS.forEach((v,i)=>{
+    const svg=svgFor(v,i); svgs.push(svg);
+    const w=warnings[i];
+    const html=`${w.length?`<div class="warn"><b>Advertencias de notación (${w.length})</b><ul>${w.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}
+    <div class="card"><h2>${esc(v.id)} — ${esc(v.name)}</h2><div class="meta">
+      <div><b>Viewpoint:</b> ${esc(v.viewpoint||'—')}</div><div><b>Artefacto TOGAF:</b> ${esc(v.togafArtifact||'—')}</div>
+      <div><b>Sección del ADD:</b> ${esc(v.addSection||'—')}</div><div><b>Stakeholders:</b> ${esc((v.stakeholders||[]).join(', ')||'—')}</div>
+      <div><b>Concerns:</b> ${esc((v.concerns||[]).join(', ')||'—')}</div></div>
+      ${v.purpose?`<p style="margin:8px 0 0"><b>Propósito:</b> ${esc(v.purpose)}</p>`:''}
+      ${v.instructions?`<p style="margin:10px 0 4px"><b>Instrucciones de la plantilla del ADD:</b></p><div class="instr">${esc(v.instructions)}</div>`:''}</div>
+    <div class="card"><h3>Diagrama de referencia</h3><div class="canvas">${svg}</div>
+      <div class="btns"><button data-svg="${i}">Descargar SVG</button><button data-png="${i}">Descargar PNG</button></div></div>
+    <div class="card"><h3>Pasos para construirla</h3><ol class="steps">${steps(v, firstSeen).map(s=>`<li>${s}</li>`).join('')}</ol></div>
+    ${tables(v)}`;
+    add(v.id, html);
+  });
+
+  add('Leyenda', `<div class="card"><h2>Relaciones</h2><div class="canvas" style="display:inline-block">${legendSvg()}</div><p class="small">Composición y agregación: el rombo va en el todo. Asignación: punto en quien ejecuta. Acceso: la flecha indica el sentido del dato (hacia el objeto = escritura; hacia el comportamiento = lectura).</p></div><div class="card"><h2>Elementos por capa</h2>${elementLegend()}</div>`);
+
+  add('Exportar', `<div class="card"><h2>Exportar el modelo</h2><p>Opcional: para no digitar elementos y relaciones uno a uno. Los diagramas se siguen construyendo a mano con la referencia de cada vista.</p>
+    <div class="btns"><button id="bx">Open Exchange Format (.xml)</button><button id="bc">CSV para Archi (3 archivos)</button><button id="bs">Todas las vistas en SVG</button></div>
+    <p class="small">Open Exchange Format (estándar The Open Group): lo importan Archi (Archivo → Importar → Open Exchange File) y otras herramientas ArchiMate; verifica la compatibilidad en la tuya. CSV: en Archi, Archivo → Importar → CSV, seleccionando elements.csv.</p></div>`);
+
+  main.addEventListener('click',ev=>{
+    const b=ev.target.closest('button'); if(!b) return;
+    if(b.dataset.svg!==undefined) download(`${VIEWS[b.dataset.svg].id}.svg`, svgs[b.dataset.svg], 'image/svg+xml');
+    if(b.dataset.png!==undefined) downloadPng(svgs[b.dataset.png], `${VIEWS[b.dataset.png].id}.png`);
+    if(b.id==='bx') download('modelo-archimate.xml', exchangeXml(), 'application/xml');
+    if(b.id==='bc'){ const c=csvArchi(); download('elements.csv',c.e,'text/csv'); setTimeout(()=>download('relations.csv',c.r,'text/csv'),400); setTimeout(()=>download('properties.csv',c.p,'text/csv'),800); }
+    if(b.id==='bs') svgs.forEach((s,i)=>setTimeout(()=>download(`${VIEWS[i].id}.svg`,s,'image/svg+xml'),i*400));
+  });
+  secs[0][0].click();
+}
+try{ build(); }catch(err){ document.getElementById('main').innerHTML='<div class="warn">Error al renderizar: '+esc(err.message)+'. Revisa el JSON de VIEWS.</div>'; console.error(err); }
+</script>
+</body>
+</html>
