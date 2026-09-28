@@ -1,0 +1,33 @@
+sequenceDiagram
+    autonumber
+    actor U as Analista documental
+    participant W as Process One Web
+    participant B as Backend Process One
+    participant Q as Service Bus
+    participant WK as Worker de análisis
+    participant O as AG-00 Orquestador (Foundry)
+    participant S as Agentes especialistas
+    participant V as AG-17 Verificador
+    participant AS as Azure AI Search
+    participant DB as Azure SQL
+    U->>W: Selecciona documento(s) y tipo de revisión
+    W->>B: POST /api/v1/analisis (token Entra ID)
+    B->>DB: Crear Ejecución (estado = EN_COLA)
+    B->>Q: Encolar mensaje {ejecucionId, docIds, alcance}
+    B-->>W: 202 Accepted + ejecucionId
+    Q->>WK: Entregar mensaje
+    WK->>O: Crear hilo y enviar solicitud
+    O->>AS: Recuperar contexto (documento + relacionados)
+    O->>O: Planificar agentes requeridos
+    par Ejecución en paralelo
+        O->>S: Delegar tareas (p. ej. AG-02, AG-04, AG-05)
+        S->>AS: Búsqueda híbrida por evidencia
+        S-->>O: Hallazgos (JSON con citas)
+    end
+    O->>V: Consolidar y validar hallazgos
+    V-->>O: Hallazgos validados + confianza
+    O-->>WK: Informe consolidado
+    WK->>DB: Persistir hallazgos, tokens y costo
+    WK-->>B: Evento de finalización
+    B-->>W: Notificación (SignalR / polling)
+    U->>W: Revisa, acepta o rechaza hallazgos (HITL)

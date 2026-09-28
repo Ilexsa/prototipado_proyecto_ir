@@ -1,0 +1,112 @@
+erDiagram
+    SOLICITUD_SGP ||--o{ EJECUCION_ANALISIS : origina
+    SOLICITUD_SGP }o--o{ DOCUMENTO : impacta
+    SOLICITUD_SGP ||--o{ BORRADOR : genera
+    VERSION_DOCUMENTO ||--o{ BORRADOR : base_de
+    BORRADOR ||--o{ APROBACION : recibe
+    USUARIO ||--o{ APROBACION : emite
+    DOCUMENTO ||--o{ VERSION_DOCUMENTO : tiene
+    DOCUMENTO ||--o{ ADJUNTO : contiene
+    DOCUMENTO }o--|| AREA : pertenece
+    DOCUMENTO }o--|| TIPO_DOCUMENTO : clasifica
+    VERSION_DOCUMENTO ||--o{ FRAGMENTO : se_divide_en
+    VERSION_DOCUMENTO ||--o{ INGESTA_REGISTRO : registra
+    EJECUCION_ANALISIS ||--o{ EJECUCION_DOCUMENTO : incluye
+    EJECUCION_DOCUMENTO }o--|| VERSION_DOCUMENTO : analiza
+    EJECUCION_DOCUMENTO ||--o{ INVOCACION_AGENTE : dispara
+    INVOCACION_AGENTE }o--|| AGENTE : usa
+    INVOCACION_AGENTE ||--o{ HALLAZGO : produce
+    HALLAZGO ||--o| DECISION_REVISION : recibe
+    USUARIO ||--o{ EJECUCION_ANALISIS : solicita
+    USUARIO ||--o{ DECISION_REVISION : toma
+    AGENTE ||--o{ PROMPT_VERSION : versiona
+    DOCUMENTO {
+        bigint documento_id PK
+        string onbase_doc_id UK
+        string titulo
+        string codigo_documental
+        int area_id FK
+        int tipo_documento_id FK
+        string dueno_proceso
+        string estado_vigencia
+        date fecha_ultima_revision
+    }
+    VERSION_DOCUMENTO {
+        bigint version_id PK
+        bigint documento_id FK
+        string numero_version
+        string blob_uri
+        string sha256
+        int paginas
+        string idioma
+        datetime fecha_ingesta
+    }
+    ADJUNTO {
+        bigint adjunto_id PK
+        bigint documento_id FK
+        string onbase_doc_id
+        string nombre_archivo
+        string mime_type
+        string blob_uri
+    }
+    FRAGMENTO {
+        string chunk_id PK
+        bigint version_id FK
+        int orden
+        int pagina
+        string seccion
+        int tokens
+    }
+    EJECUCION_ANALISIS {
+        uuid ejecucion_id PK
+        string origen
+        string alcance
+        string estado
+        decimal costo_estimado_usd
+        datetime inicio
+        datetime fin
+    }
+    INVOCACION_AGENTE {
+        uuid invocacion_id PK
+        string agente_id FK
+        string modelo
+        int tokens_entrada
+        int tokens_salida
+        int latencia_ms
+    }
+    HALLAZGO {
+        uuid hallazgo_id PK
+        string categoria
+        string severidad
+        string descripcion
+        string evidencia_cita
+        string sugerencia
+        decimal confianza
+    }
+    DECISION_REVISION {
+        uuid decision_id PK
+        string decision
+        string comentario
+        datetime fecha
+    }
+    SOLICITUD_SGP {
+        string ticket_sgp PK
+        string solicitante
+        string ingeniero_asignado
+        string estado
+        datetime fecha_registro
+    }
+    BORRADOR {
+        uuid borrador_id PK
+        int iteracion
+        string blob_uri
+        string estado
+        string onbase_carga_id
+    }
+    APROBACION {
+        uuid aprobacion_id PK
+        string tipo
+        string resultado
+        string comentario
+        datetime fecha
+    }

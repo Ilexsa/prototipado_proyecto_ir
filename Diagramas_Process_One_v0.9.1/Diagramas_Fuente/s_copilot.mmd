@@ -1,0 +1,20 @@
+sequenceDiagram
+    autonumber
+    actor C as Colaborador
+    participant T as Microsoft Teams / Web
+    participant CS as Copilot Studio
+    participant E as Microsoft Entra ID
+    participant F as AG-16 Consulta RAG (Foundry)
+    participant AS as Azure AI Search
+    C->>T: ¿Cuál es el procedimiento vigente para X?
+    T->>CS: Mensaje del usuario
+    CS->>E: SSO / token del usuario (OBO)
+    E-->>CS: Token + grupos
+    CS->>F: Invocar agente conectado (consulta + grupos del usuario)
+    F->>AS: Búsqueda híbrida + ranker semántico con filtro de seguridad por grupos
+    AS-->>F: Fragmentos relevantes con metadatos
+    F->>F: Generar respuesta fundamentada con citas
+    F-->>CS: Respuesta + referencias (documento, versión, página)
+    CS-->>T: Tarjeta adaptativa con respuesta y enlaces
+    C->>T: Retroalimentación (útil / no útil)
+    T->>CS: Registrar feedback para evaluación

@@ -1,0 +1,29 @@
+sequenceDiagram
+    autonumber
+    participant SCH as Scheduler (cron / Container Apps Job)
+    participant ING as API de Ingesta
+    participant RL as Rate Limiter (token bucket 450/h)
+    participant GW as API Gateway on-prem
+    participant OB as OnBase (SOAP)
+    participant BL as Blob Storage
+    participant SQ as Azure SQL (control)
+    SCH->>ING: Iniciar corrida (full | incremental)
+    ING->>SQ: Leer checkpoint y lista de IDs pendientes
+    loop Por cada documento pendiente
+        ING->>RL: Solicitar token
+        alt Token disponible
+            RL-->>ING: OK
+            ING->>GW: GET /documentos/{id} (REST, mTLS, a través de la VPN)
+            GW->>OB: SOAP GetDocument(id)
+            OB-->>GW: Documento + metadatos (MTOM/Base64)
+            GW-->>ING: 200 JSON + binario
+            ING->>ING: Calcular SHA-256, validar tipo MIME y tamaño
+            ING->>BL: PUT raw/{area}/{docId}/{version}/archivo + metadatos
+            ING->>SQ: Registrar ingesta OK, actualizar checkpoint
+        else Sin tokens / HTTP 429
+            RL-->>ING: Esperar (Retry-After)
+            ING->>ING: Backoff exponencial con jitter
+        end
+    end
+    Note over ING,SQ: Errores no recuperables → contenedor quarantine + registro en SQL (DLQ lógica)
+    ING-->>SCH: Resumen de corrida (OK, fallidos, pendientes)

@@ -1,0 +1,21 @@
+flowchart LR
+    subgraph BLOB[Azure Blob Storage]
+      R[raw/]
+    end
+    subgraph SRCH[Azure AI Search · Indexer + Skillset]
+      direction LR
+      K1[Cracking del documento] --> K2[OCR / Document Layout]
+      K2 --> K3[Merge de texto e imágenes]
+      K3 --> K4[Split semántico por secciones]
+      K4 --> K5[Enriquecimiento: idioma, entidades, frases clave]
+      K5 --> K6[Embeddings Azure OpenAI]
+    end
+    subgraph OUT[Salidas]
+      I1[(Índice padre: documentos)]
+      I2[(Índice hijo: fragmentos + vectores)]
+      KS[Knowledge Store: processed/]
+    end
+    R --> K1
+    K6 --> I2
+    K5 --> I1
+    K5 --> KS

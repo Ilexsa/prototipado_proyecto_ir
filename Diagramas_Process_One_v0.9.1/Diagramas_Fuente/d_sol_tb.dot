@@ -1,0 +1,70 @@
+digraph G {
+  graph [rankdir=TB, fontname="Helvetica", fontsize=11, nodesep=0.35, ranksep=0.55, bgcolor="white", pad=0.3, newrank=true];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=13, fillcolor="#FFFFFF", color="#5A5A5A", penwidth=1.2, margin="0.15,0.08"];
+  edge [fontname="Helvetica", fontsize=11, color="#404040", arrowsize=0.7];
+
+  subgraph cluster_onprem {
+    label="ON-PREMISES  (Data Center {{Sitio}})"; style="rounded,filled"; fillcolor="#F3F3F3"; color="#8A8A8A"; fontsize=12; fontcolor="#333333";
+    onbase [label="OnBase\n(Repositorio documental)\nAPI SOAP\nLímite: 500 req/h", fillcolor="#FFE9C7"];
+    gw [label="API Gateway\n(SOAP→REST, cuota,\nautenticación mTLS)", fillcolor="#FFE9C7"];
+    fw [label="Firewall perimetral /\nConcentrador VPN\n{{Marca/Modelo}}", fillcolor="#FFE9C7"];
+    onbase -> gw [dir=back, label="SOAP/HTTPS"];
+    gw -> fw [dir=both];
+  }
+
+  subgraph cluster_azure {
+    label="MICROSOFT AZURE  (Tenant {{Tenant}} · Región {{Región}})"; style="rounded,filled"; fillcolor="#EAF3FC"; color="#0078D4"; fontsize=12; fontcolor="#0078D4";
+    subgraph cluster_hub { label="VNet Hub"; style="rounded,dashed"; color="#0078D4"; fillcolor="#F5FAFF";
+      vpngw [label="VPN Gateway\n(S2S IPsec/IKEv2)", fillcolor="#CDE5F8"];
+      afw [label="Azure Firewall", fillcolor="#CDE5F8"];
+      appgw [label="Application Gateway\nWAF v2", fillcolor="#CDE5F8"];
+    }
+    subgraph cluster_ing { label="Ingesta"; style="rounded,dashed"; color="#0078D4"; fillcolor="#F5FAFF";
+      ing [label="API de Ingesta\n(Container Apps)\nRate limiter 450 req/h", fillcolor="#D9ECFA"];
+      blob [label="Azure Blob Storage\nraw · processed · quarantine", fillcolor="#D9ECFA"];
+    }
+    subgraph cluster_ai { label="Enriquecimiento y conocimiento"; style="rounded,dashed"; color="#0078D4"; fillcolor="#F5FAFF";
+      srch [label="Azure AI Search\nIndexer + Skillset\n(OCR · Layout · Split ·\nEmbeddings) · Índice híbrido", fillcolor="#D9ECFA"];
+      aoai [label="Azure OpenAI\n(Foundry Models)\nGPT · Embeddings", fillcolor="#D9ECFA"];
+    }
+    subgraph cluster_app { label="Process One"; style="rounded,dashed"; color="#0078D4"; fillcolor="#F5FAFF";
+      web [label="Process One Web\n(SPA)", fillcolor="#D9ECFA"];
+      api [label="Process One Backend\n(Container Apps)", fillcolor="#D9ECFA"];
+      sb [label="Service Bus\n(cola de análisis)", fillcolor="#D9ECFA"];
+      foundry [label="Microsoft Foundry\nAgent Service\nOrquestador + 17 agentes", fillcolor="#C2E0F7"];
+      sql [label="Azure SQL Database\n(metadatos, hallazgos)", fillcolor="#D9ECFA"];
+    }
+    subgraph cluster_sh { label="Servicios transversales"; style="rounded,dashed"; color="#0078D4"; fillcolor="#F5FAFF";
+      kv [label="Key Vault", fillcolor="#E8E8E8"];
+      mon [label="Azure Monitor /\nApp Insights /\nLog Analytics", fillcolor="#E8E8E8"];
+    }
+  }
+
+  subgraph cluster_m365 {
+    label="MICROSOFT 365"; style="rounded,filled"; fillcolor="#F1ECF8"; color="#6B4FA0"; fontsize=12; fontcolor="#6B4FA0";
+    cps [label="Copilot Studio\n(Agente conversacional)", fillcolor="#E2D8F2"];
+    teams [label="Microsoft Teams /\nWeb embebida", fillcolor="#E2D8F2"];
+    entra [label="Microsoft Entra ID\n(SSO, grupos)", fillcolor="#E2D8F2"];
+  }
+
+  users [label="Usuarios\n(Analistas, Dueños de\nproceso, Colaboradores)", shape=ellipse, fillcolor="#FFFFFF"];
+
+  fw -> vpngw [label="Túnel VPN\nIPsec", color="#C0392B", fontcolor="#C0392B", penwidth=2, dir=both];
+  vpngw -> afw;
+  afw -> ing [dir=back, label="① extracción"];
+  ing -> blob [label="② deposita"];
+  blob -> srch [label="③ indexer"];
+  srch -> aoai [label="embeddings", style=dashed];
+  users -> appgw [label="HTTPS"];
+  appgw -> web;
+  web -> api;
+  api -> sb;
+  api -> foundry [label="④ delega"];
+  foundry -> srch [label="RAG"];
+  foundry -> aoai [label="inferencia"];
+  api -> sql;
+  users -> teams;
+  teams -> cps;
+  cps -> foundry [label="⑤ agente\nconectado"];
+  entra -> cps [style=dotted, arrowhead=none];
+}

@@ -1,0 +1,18 @@
+digraph S {
+  graph [rankdir=TB, fontname="Helvetica", nodesep=0.35, ranksep=0.5, pad=0.25];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=10, fillcolor="#D9ECFA", color="#0078D4", margin="0.12,0.06"];
+  edge [fontname="Helvetica", fontsize=8.5, color="#404040", arrowsize=0.7];
+  ini [shape=circle, label="", width=0.2, style=filled, fillcolor="#1F3864"];
+  pen [label="Pendiente de\ningesta"]; ing [label="Ingestado"]; idx [label="Indexado"]; cua [label="Cuarentena", fillcolor="#F8D7D3", color="#C0392B"];
+  ana [label="En análisis"]; bor [label="Borrador\ngenerado"]; rev [label="En revisión del\nIngeniero (HITL)"]; apr [label="Aprobado por el\nIngeniero"];
+  area [label="En revisión\nde áreas"]; ger [label="Aprobado por\ngerencias"]; car [label="Cargado en OnBase\n(no vigente)", fillcolor="#FFE9C7", color="#B7791F"]; pub [label="Publicado como\nvigente", fillcolor="#E8F6EA", color="#2E7D32"];
+  {rank=same; ini; pen; ing; idx;}
+  {rank=same; cua; ana; bor; rev; apr;}
+  {rank=same; area; ger; car; pub;}
+  ini->pen; pen->ing [label="extracción OK"]; ing->idx [label="skillset OK"];
+  pen->cua [label="error no\nrecuperable"]; cua->pen [label="corrección\nmanual"]; cua->ana [style=invis];
+  idx->ana [label="análisis solicitado\n(ticket SGP)"]; ana->bor; bor->rev; rev->apr [label="aprueba"]; rev->ana [label="observaciones /\najustes", constraint=false];
+  apr->area [label="documento enviado"]; area->ger [label="revisión conforme"]; ger->car [label="carga a OnBase"]; car->pub [label="flujo de\npublicación OnBase"];
+  pub->idx [label="reindexación", constraint=false];
+   ana->area [style=invis, weight=10];
+}

@@ -1,0 +1,43 @@
+digraph N {
+  graph [rankdir=TB, fontname="Helvetica", fontsize=11, nodesep=0.25, ranksep=0.6, pad=0.3, newrank=true, compound=true];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=11.5, fillcolor="#FFFFFF", color="#5A5A5A", margin="0.12,0.06"];
+  edge [fontname="Helvetica", fontsize=10, color="#404040", arrowsize=0.7];
+
+  subgraph cluster_op { label="On-Premises · Red corporativa {{CIDR_ONPREM}}"; style="rounded,filled"; fillcolor="#F3F3F3"; color="#8A8A8A";
+    ob [label="OnBase App/Web Server\n{{IP_ONBASE}}:{{PUERTO}}", fillcolor="#FFE9C7"];
+    agw [label="API Gateway on-prem\n{{IP_GATEWAY}}:443", fillcolor="#FFE9C7"];
+    edge_fw [label="Firewall / VPN device\nIP pública: {{IP_PUB_ONPREM}}\nBGP ASN: {{ASN_ONPREM}}", fillcolor="#FFE9C7"];
+    usr [label="Usuarios corporativos\n{{CIDR_USUARIOS}}", fillcolor="#FFFFFF"];
+    dnsop [label="DNS corporativo\n{{IP_DNS_ONPREM}}", fillcolor="#FFFFFF"];
+  }
+
+  subgraph cluster_hub { label="VNet Hub · vnet-hub-prd · {{CIDR_HUB}} (sugerido /22)"; style="rounded,filled"; fillcolor="#EAF3FC"; color="#0078D4";
+    s1 [label="GatewaySubnet (/27)\nVPN Gateway VpnGw1AZ (activo-activo)\nIP pública: {{IP_PUB_AZURE}}", fillcolor="#CDE5F8"];
+    s2 [label="AzureFirewallSubnet (/26)\nAzure Firewall (Standard | Premium)", fillcolor="#CDE5F8"];
+    s3 [label="snet-appgw (/24)\nApplication Gateway WAF v2\nIP privada: {{IP_APPGW}}", fillcolor="#CDE5F8"];
+    s4 [label="snet-dnsresolver-in (/28)\nsnet-dnsresolver-out (/28)\nPrivate DNS Resolver", fillcolor="#CDE5F8"];
+  }
+
+  subgraph cluster_spoke { label="VNet Spoke · vnet-processone-prd · {{CIDR_SPOKE}} (sugerido /22)"; style="rounded,filled"; fillcolor="#F5FAFF"; color="#0078D4";
+    a1 [label="snet-aca-ingesta (/27)\nContainer Apps Env. (interno)\nAPI de Ingesta", fillcolor="#D9ECFA"];
+    a2 [label="snet-aca-app (/27)\nContainer Apps Env. (interno)\nBackend Process One + Workers", fillcolor="#D9ECFA"];
+    a3 [label="snet-agents (/24)\nDelegada a Foundry Agent Service\n(Standard Agent Setup)", fillcolor="#C2E0F7"];
+    a4 [label="snet-pe (/25)\nPrivate Endpoints:\nBlob · AI Search · Foundry/AOAI ·\nSQL · Service Bus · Key Vault ·\nCosmos DB · ACR", fillcolor="#D9ECFA"];
+  }
+
+  subgraph cluster_saas { label="Microsoft 365 / Power Platform"; style="rounded,filled"; fillcolor="#F1ECF8"; color="#6B4FA0";
+    cps [label="Copilot Studio\n(VNet support de Power Platform:\nsnet delegada {{CIDR_PP}})\n→ Private Link al spoke", fillcolor="#E2D8F2"];
+  }
+
+  edge_fw -> s1 [label="IPsec IKEv2\nUDP 500/4500 · ESP", color="#C0392B", fontcolor="#C0392B", penwidth=2, dir=both];
+  s1 -> s2 [label="UDR → Firewall"];
+  s2 -> a1 [dir=both, label="peering"];
+  s2 -> a2 [dir=both];
+  a1 -> a4; a2 -> a4; a3 -> a4;
+  agw -> ob [label="SOAP 443/{{PUERTO}}"];
+  edge_fw -> agw [label="TCP 443 (solo\ndesde snet-aca-ingesta)"];
+  usr -> edge_fw [label="HTTPS a {{IP_APPGW}}"];
+  dnsop -> s4 [label="Forwarders zonas\nprivatelink.*", style=dashed];
+  s3 -> a2 [label="HTTPS"];
+  cps -> a4 [style=dashed];
+}
