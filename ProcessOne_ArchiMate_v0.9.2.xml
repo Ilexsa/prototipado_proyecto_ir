@@ -1,0 +1,1880 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="id-model-processone">
+  <name xml:lang="es">Process One – ADD (formato corporativo) · ArchiMate 3.2</name>
+  <documentation xml:lang="es">Modelo ArchiMate del ADD de Process One v0.9.2 alineado al formato corporativo: capas de negocio, sistemas de información y tecnología. Los {{…}} se completan en sitio.</documentation>
+  <elements>
+    <element identifier="id-rol_sol" xsi:type="BusinessRole">
+      <name xml:lang="es">Solicitante</name>
+    </element>
+    <element identifier="id-rol_ip" xsi:type="BusinessRole">
+      <name xml:lang="es">Ingeniero de Procesos</name>
+    </element>
+    <element identifier="id-rol_jip" xsi:type="BusinessRole">
+      <name xml:lang="es">Jefe de Ingeniería de Procesos</name>
+    </element>
+    <element identifier="id-rol_area" xsi:type="BusinessRole">
+      <name xml:lang="es">Áreas involucradas</name>
+    </element>
+    <element identifier="id-rol_ger" xsi:type="BusinessRole">
+      <name xml:lang="es">Gerentes de las áreas</name>
+    </element>
+    <element identifier="id-rol_gcias" xsi:type="BusinessRole">
+      <name xml:lang="es">Gerencias (Procesos, Operaciones e involucradas)</name>
+    </element>
+    <element identifier="id-rol_aob" xsi:type="BusinessRole">
+      <name xml:lang="es">Administrador de OnBase</name>
+    </element>
+    <element identifier="id-rol_col" xsi:type="BusinessRole">
+      <name xml:lang="es">Colaboradores</name>
+    </element>
+    <element identifier="id-p01" xsi:type="BusinessProcess">
+      <name xml:lang="es">1. Solicitud de actualización (ticket SGP)</name>
+    </element>
+    <element identifier="id-p02" xsi:type="BusinessProcess">
+      <name xml:lang="es">2. Validación de la solicitud</name>
+    </element>
+    <element identifier="id-p03" xsi:type="BusinessProcess">
+      <name xml:lang="es">3. Asignación a un Ingeniero de Procesos</name>
+    </element>
+    <element identifier="id-p04" xsi:type="BusinessProcess">
+      <name xml:lang="es">4. Identificación de áreas, procesos y documentos</name>
+    </element>
+    <element identifier="id-p05" xsi:type="BusinessProcess">
+      <name xml:lang="es">5. Sesiones de levantamiento</name>
+    </element>
+    <element identifier="id-p06" xsi:type="BusinessProcess">
+      <name xml:lang="es">6. Análisis y generación del borrador</name>
+    </element>
+    <element identifier="id-p07" xsi:type="BusinessProcess">
+      <name xml:lang="es">7. Revisión por las áreas</name>
+    </element>
+    <element identifier="id-p08" xsi:type="BusinessProcess">
+      <name xml:lang="es">8. Aprobación de gerencias</name>
+    </element>
+    <element identifier="id-p09" xsi:type="BusinessProcess">
+      <name xml:lang="es">9. Socialización con gerencias</name>
+    </element>
+    <element identifier="id-p10" xsi:type="BusinessProcess">
+      <name xml:lang="es">10. Carga en OnBase y publicación</name>
+    </element>
+    <element identifier="id-p11" xsi:type="BusinessProcess">
+      <name xml:lang="es">11. Comunicación formal</name>
+    </element>
+    <element identifier="id-bp_act" xsi:type="BusinessProcess">
+      <name xml:lang="es">Actualización de procesos y manuales</name>
+      <documentation xml:lang="es">Proceso de soporte de Ingeniería de Procesos (11 pasos).</documentation>
+    </element>
+    <element identifier="id-ev_ini" xsi:type="BusinessEvent">
+      <name xml:lang="es">Necesidad de actualizar un proceso</name>
+    </element>
+    <element identifier="id-ev_fin" xsi:type="BusinessEvent">
+      <name xml:lang="es">Documento actualizado y comunicado</name>
+    </element>
+    <element identifier="id-cap01" xsi:type="Capability">
+      <name xml:lang="es">Gestión de solicitudes de actualización</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Sin cambio</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap02" xsi:type="Capability">
+      <name xml:lang="es">Análisis de impacto documental</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Nueva</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap03" xsi:type="Capability">
+      <name xml:lang="es">Consulta de conocimiento documental</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Nueva</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap04" xsi:type="Capability">
+      <name xml:lang="es">Análisis documental asistido por IA</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Nueva</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap05" xsi:type="Capability">
+      <name xml:lang="es">Redacción y revisión de borradores (HITL)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Modificar</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap06" xsi:type="Capability">
+      <name xml:lang="es">Revisión y aprobación documental</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Modificar</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap07" xsi:type="Capability">
+      <name xml:lang="es">Comunicación de cambios de procesos</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Sin cambio</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap08" xsi:type="Capability">
+      <name xml:lang="es">Gestión del repositorio documental oficial</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Modificar</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap09" xsi:type="Capability">
+      <name xml:lang="es">Integración estándar con OnBase (TMF667)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Nueva</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap10" xsi:type="Capability">
+      <name xml:lang="es">Base de conocimiento documental (RAG)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Nueva</value></property>
+      </properties>
+    </element>
+    <element identifier="id-cap11" xsi:type="Capability">
+      <name xml:lang="es">Comunicación formal de actualizaciones</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1"><value xml:lang="es">Sin cambio</value></property>
+      </properties>
+    </element>
+    <element identifier="id-grp_sin" xsi:type="Grouping">
+      <name xml:lang="es">Sin cambio (verde)</name>
+    </element>
+    <element identifier="id-grp_mod" xsi:type="Grouping">
+      <name xml:lang="es">Modificar (naranja)</name>
+    </element>
+    <element identifier="id-grp_new" xsi:type="Grouping">
+      <name xml:lang="es">Nueva (rojo)</name>
+    </element>
+    <element identifier="id-ac_onb" xsi:type="ApplicationComponent">
+      <name xml:lang="es">OnBase</name>
+      <documentation xml:lang="es">Repositorio documental oficial (Hyland), on-premises.</documentation>
+    </element>
+    <element identifier="id-ac_sgp" xsi:type="ApplicationComponent">
+      <name xml:lang="es">SGP</name>
+      <documentation xml:lang="es">Sistema de tickets de solicitudes.</documentation>
+    </element>
+    <element identifier="id-ac_mail" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Correo y Word</name>
+      <documentation xml:lang="es">Revisión, borradores y comunicación (AS-IS).</documentation>
+    </element>
+    <element identifier="id-ac_gw" xsi:type="ApplicationComponent">
+      <name xml:lang="es">API Gateway – fachada TMF667 v4</name>
+      <documentation xml:lang="es">Traduce TMF667 REST a SOAP; cuota 450 req/h, mTLS, auditoría.</documentation>
+    </element>
+    <element identifier="id-ac_ing" xsi:type="ApplicationComponent">
+      <name xml:lang="es">API de Ingesta de OnBase</name>
+      <documentation xml:lang="es">Azure Container Apps. Extracción con cuota, checkpoint, carga controlada.</documentation>
+    </element>
+    <element identifier="id-ac_back" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Backend de Process One</name>
+      <documentation xml:lang="es">Azure Container Apps. Solicitudes, análisis, borradores HITL, aprobaciones, carga, tablero.</documentation>
+    </element>
+    <element identifier="id-ac_web" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Process One Web</name>
+      <documentation xml:lang="es">Azure Container Apps. SPA del Ingeniero de Procesos.</documentation>
+    </element>
+    <element identifier="id-ac_srch" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Azure AI Search – índice RAG</name>
+      <documentation xml:lang="es">Indexer + skillset: OCR, enriquecimiento, embeddings text-embedding-3-large (1.536).</documentation>
+    </element>
+    <element identifier="id-ac_mas" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Sistema multiagente (18 agentes)</name>
+      <documentation xml:lang="es">Microsoft Foundry Agent Service: AG-00 orquestador, 16 especialistas, AG-17 verificador.</documentation>
+    </element>
+    <element identifier="id-ac_cbot" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Chatbot de Process One</name>
+      <documentation xml:lang="es">Copilot Studio (Teams y web), conectado al agente AG-16.</documentation>
+    </element>
+    <element identifier="id-ai_soap" xsi:type="ApplicationInterface">
+      <name xml:lang="es">API SOAP de OnBase</name>
+    </element>
+    <element identifier="id-ai_tmf" xsi:type="ApplicationInterface">
+      <name xml:lang="es">API TMF667 Document Management v4</name>
+    </element>
+    <element identifier="id-ai_papi" xsi:type="ApplicationInterface">
+      <name xml:lang="es">API de Process One (REST)</name>
+    </element>
+    <element identifier="id-ai_web" xsi:type="ApplicationInterface">
+      <name xml:lang="es">Interfaz web de Process One</name>
+    </element>
+    <element identifier="id-ai_chat" xsi:type="ApplicationInterface">
+      <name xml:lang="es">Canal Teams / web</name>
+    </element>
+    <element identifier="id-as_ident" xsi:type="ApplicationService">
+      <name xml:lang="es">Identificación de documentos impactados</name>
+    </element>
+    <element identifier="id-as_consulta" xsi:type="ApplicationService">
+      <name xml:lang="es">Consulta de manuales con cita</name>
+    </element>
+    <element identifier="id-as_analisis" xsi:type="ApplicationService">
+      <name xml:lang="es">Análisis documental y borrador</name>
+    </element>
+    <element identifier="id-as_hitl" xsi:type="ApplicationService">
+      <name xml:lang="es">Gestión de borradores y aprobaciones</name>
+    </element>
+    <element identifier="id-as_carga" xsi:type="ApplicationService">
+      <name xml:lang="es">Carga controlada a OnBase</name>
+    </element>
+    <element identifier="id-as_ingesta" xsi:type="ApplicationService">
+      <name xml:lang="es">Ingesta y sincronización documental</name>
+    </element>
+    <element identifier="id-as_rag" xsi:type="ApplicationService">
+      <name xml:lang="es">Búsqueda híbrida con cita (RAG)</name>
+    </element>
+    <element identifier="id-as_repo" xsi:type="ApplicationService">
+      <name xml:lang="es">Gestión documental OnBase</name>
+    </element>
+    <element identifier="id-as_tick" xsi:type="ApplicationService">
+      <name xml:lang="es">Registro de solicitudes</name>
+    </element>
+    <element identifier="id-col_ing" xsi:type="ApplicationCollaboration">
+      <name xml:lang="es">Ingesta y conocimiento</name>
+    </element>
+    <element identifier="id-col_ana" xsi:type="ApplicationCollaboration">
+      <name xml:lang="es">Análisis documental</name>
+    </element>
+    <element identifier="id-col_con" xsi:type="ApplicationCollaboration">
+      <name xml:lang="es">Consulta conversacional</name>
+    </element>
+    <element identifier="id-col_car" xsi:type="ApplicationCollaboration">
+      <name xml:lang="es">Carga controlada</name>
+    </element>
+    <element identifier="id-do_doc" xsi:type="DataObject">
+      <name xml:lang="es">Document (TMF667)</name>
+    </element>
+    <element identifier="id-do_att" xsi:type="DataObject">
+      <name xml:lang="es">Attachment</name>
+    </element>
+    <element identifier="id-do_rel" xsi:type="DataObject">
+      <name xml:lang="es">DocumentRelationship</name>
+    </element>
+    <element identifier="id-do_ver" xsi:type="DataObject">
+      <name xml:lang="es">Versión de documento</name>
+    </element>
+    <element identifier="id-do_frag" xsi:type="DataObject">
+      <name xml:lang="es">Fragmento (texto + vector)</name>
+    </element>
+    <element identifier="id-do_sol" xsi:type="DataObject">
+      <name xml:lang="es">Solicitud (ticket SGP)</name>
+    </element>
+    <element identifier="id-do_eje" xsi:type="DataObject">
+      <name xml:lang="es">Ejecución de análisis</name>
+    </element>
+    <element identifier="id-do_hal" xsi:type="DataObject">
+      <name xml:lang="es">Hallazgo</name>
+    </element>
+    <element identifier="id-do_bor" xsi:type="DataObject">
+      <name xml:lang="es">Borrador</name>
+    </element>
+    <element identifier="id-do_apr" xsi:type="DataObject">
+      <name xml:lang="es">Aprobación</name>
+    </element>
+    <element identifier="id-do_car" xsi:type="DataObject">
+      <name xml:lang="es">Carga a OnBase</name>
+    </element>
+    <element identifier="id-loc_dc" xsi:type="Location">
+      <name xml:lang="es">Centro de datos (on-premises)</name>
+    </element>
+    <element identifier="id-loc_az" xsi:type="Location">
+      <name xml:lang="es">Microsoft Azure – {{Región}}</name>
+    </element>
+    <element identifier="id-loc_m365" xsi:type="Location">
+      <name xml:lang="es">Microsoft 365</name>
+    </element>
+    <element identifier="id-n_obs" xsi:type="Node">
+      <name xml:lang="es">Servidor OnBase</name>
+    </element>
+    <element identifier="id-n_gws" xsi:type="Node">
+      <name xml:lang="es">Servidor API Gateway</name>
+    </element>
+    <element identifier="id-d_fw" xsi:type="Device">
+      <name xml:lang="es">Firewall / concentrador VPN</name>
+    </element>
+    <element identifier="id-n_sgp" xsi:type="Node">
+      <name xml:lang="es">Servidor SGP</name>
+    </element>
+    <element identifier="id-cn_lan" xsi:type="CommunicationNetwork">
+      <name xml:lang="es">LAN corporativa</name>
+    </element>
+    <element identifier="id-p_vpn" xsi:type="Path">
+      <name xml:lang="es">VPN site-to-site IPsec/IKEv2</name>
+    </element>
+    <element identifier="id-n_vgw" xsi:type="Node">
+      <name xml:lang="es">Azure VPN Gateway</name>
+    </element>
+    <element identifier="id-cn_vnet" xsi:type="CommunicationNetwork">
+      <name xml:lang="es">VNet Process One (Private Endpoints)</name>
+    </element>
+    <element identifier="id-n_aca" xsi:type="Node">
+      <name xml:lang="es">Azure Container Apps Environment (interno)</name>
+    </element>
+    <element identifier="id-n_blob" xsi:type="Node">
+      <name xml:lang="es">Azure Blob Storage</name>
+    </element>
+    <element identifier="id-n_srch" xsi:type="Node">
+      <name xml:lang="es">Azure AI Search</name>
+    </element>
+    <element identifier="id-n_fdy" xsi:type="Node">
+      <name xml:lang="es">Microsoft Foundry + Azure OpenAI</name>
+    </element>
+    <element identifier="id-n_kv" xsi:type="Node">
+      <name xml:lang="es">Azure Key Vault</name>
+    </element>
+    <element identifier="id-n_db" xsi:type="Node">
+      <name xml:lang="es">Base de datos operativa (por definir)</name>
+    </element>
+    <element identifier="id-n_mon" xsi:type="Node">
+      <name xml:lang="es">Azure Monitor / App Insights</name>
+    </element>
+    <element identifier="id-n_entra" xsi:type="Node">
+      <name xml:lang="es">Microsoft Entra ID</name>
+    </element>
+    <element identifier="id-n_cps" xsi:type="Node">
+      <name xml:lang="es">Copilot Studio</name>
+    </element>
+    <element identifier="id-grp_neg" xsi:type="Grouping">
+      <name xml:lang="es">Negocio</name>
+    </element>
+    <element identifier="id-grp_si" xsi:type="Grouping">
+      <name xml:lang="es">Sistemas de información</name>
+    </element>
+    <element identifier="id-grp_tec" xsi:type="Grouping">
+      <name xml:lang="es">Tecnología</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="id-r-com-bp_act-p01" source="id-bp_act" target="id-p01" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p02" source="id-bp_act" target="id-p02" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p03" source="id-bp_act" target="id-p03" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p04" source="id-bp_act" target="id-p04" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p05" source="id-bp_act" target="id-p05" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p06" source="id-bp_act" target="id-p06" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p07" source="id-bp_act" target="id-p07" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p08" source="id-bp_act" target="id-p08" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p09" source="id-bp_act" target="id-p09" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p10" source="id-bp_act" target="id-p10" xsi:type="Composition" />
+    <relationship identifier="id-r-com-bp_act-p11" source="id-bp_act" target="id-p11" xsi:type="Composition" />
+    <relationship identifier="id-r-tri-ev_ini-p01" source="id-ev_ini" target="id-p01" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p01-p02" source="id-p01" target="id-p02" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p02-p03" source="id-p02" target="id-p03" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p03-p04" source="id-p03" target="id-p04" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p04-p05" source="id-p04" target="id-p05" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p05-p06" source="id-p05" target="id-p06" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p06-p07" source="id-p06" target="id-p07" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p07-p08" source="id-p07" target="id-p08" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p08-p09" source="id-p08" target="id-p09" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p09-p10" source="id-p09" target="id-p10" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p10-p11" source="id-p10" target="id-p11" xsi:type="Triggering" />
+    <relationship identifier="id-r-tri-p11-ev_fin" source="id-p11" target="id-ev_fin" xsi:type="Triggering" />
+    <relationship identifier="id-r-ass-rol_sol-p01" source="id-rol_sol" target="id-p01" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_ip-p02" source="id-rol_ip" target="id-p02" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_jip-p03" source="id-rol_jip" target="id-p03" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_ip-p04" source="id-rol_ip" target="id-p04" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_ip-p05" source="id-rol_ip" target="id-p05" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_ip-p06" source="id-rol_ip" target="id-p06" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_area-p07" source="id-rol_area" target="id-p07" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_ger-p08" source="id-rol_ger" target="id-p08" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_gcias-p09" source="id-rol_gcias" target="id-p09" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_ip-p10" source="id-rol_ip" target="id-p10" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_aob-p10" source="id-rol_aob" target="id-p10" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_ip-p11" source="id-rol_ip" target="id-p11" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_ip-bp_act" source="id-rol_ip" target="id-bp_act" xsi:type="Assignment" />
+    <relationship identifier="id-r-ass-rol_jip-bp_act" source="id-rol_jip" target="id-bp_act" xsi:type="Assignment" />
+    <relationship identifier="id-r-agg-grp_sin-cap01" source="id-grp_sin" target="id-cap01" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_new-cap02" source="id-grp_new" target="id-cap02" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_new-cap03" source="id-grp_new" target="id-cap03" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_new-cap04" source="id-grp_new" target="id-cap04" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_mod-cap05" source="id-grp_mod" target="id-cap05" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_mod-cap06" source="id-grp_mod" target="id-cap06" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_sin-cap07" source="id-grp_sin" target="id-cap07" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_mod-cap08" source="id-grp_mod" target="id-cap08" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_new-cap09" source="id-grp_new" target="id-cap09" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_new-cap10" source="id-grp_new" target="id-cap10" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-grp_sin-cap11" source="id-grp_sin" target="id-cap11" xsi:type="Aggregation" />
+    <relationship identifier="id-r-com-ac_onb-ai_soap" source="id-ac_onb" target="id-ai_soap" xsi:type="Composition" />
+    <relationship identifier="id-r-com-ac_gw-ai_tmf" source="id-ac_gw" target="id-ai_tmf" xsi:type="Composition" />
+    <relationship identifier="id-r-com-ac_back-ai_papi" source="id-ac_back" target="id-ai_papi" xsi:type="Composition" />
+    <relationship identifier="id-r-com-ac_web-ai_web" source="id-ac_web" target="id-ai_web" xsi:type="Composition" />
+    <relationship identifier="id-r-com-ac_cbot-ai_chat" source="id-ac_cbot" target="id-ai_chat" xsi:type="Composition" />
+    <relationship identifier="id-r-ser-ai_soap-ac_gw" source="id-ai_soap" target="id-ac_gw" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-ai_tmf-ac_ing" source="id-ai_tmf" target="id-ac_ing" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-ai_papi-ac_web" source="id-ai_papi" target="id-ac_web" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-ai_web-rol_ip" source="id-ai_web" target="id-rol_ip" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-ai_chat-rol_ip" source="id-ai_chat" target="id-rol_ip" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-ai_chat-rol_col" source="id-ai_chat" target="id-rol_col" xsi:type="Serving" />
+    <relationship identifier="id-r-rea-ac_cbot-as_ident" source="id-ac_cbot" target="id-as_ident" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_cbot-as_consulta" source="id-ac_cbot" target="id-as_consulta" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_mas-as_analisis" source="id-ac_mas" target="id-as_analisis" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_back-as_hitl" source="id-ac_back" target="id-as_hitl" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_ing-as_carga" source="id-ac_ing" target="id-as_carga" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_ing-as_ingesta" source="id-ac_ing" target="id-as_ingesta" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_srch-as_rag" source="id-ac_srch" target="id-as_rag" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_onb-as_repo" source="id-ac_onb" target="id-as_repo" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_sgp-as_tick" source="id-ac_sgp" target="id-as_tick" xsi:type="Realization" />
+    <relationship identifier="id-r-ser-as_ident-p04" source="id-as_ident" target="id-p04" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_consulta-p05" source="id-as_consulta" target="id-p05" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_analisis-p06" source="id-as_analisis" target="id-p06" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_hitl-p06" source="id-as_hitl" target="id-p06" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_hitl-p07" source="id-as_hitl" target="id-p07" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_hitl-p08" source="id-as_hitl" target="id-p08" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_carga-p10" source="id-as_carga" target="id-p10" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_repo-p10" source="id-as_repo" target="id-p10" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_tick-p01" source="id-as_tick" target="id-p01" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_repo-bp_act" source="id-as_repo" target="id-bp_act" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_tick-bp_act" source="id-as_tick" target="id-bp_act" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-ac_mail-bp_act" source="id-ac_mail" target="id-bp_act" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_rag-ac_mas" source="id-as_rag" target="id-ac_mas" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-as_ingesta-ac_srch" source="id-as_ingesta" target="id-ac_srch" xsi:type="Serving" />
+    <relationship identifier="id-r-flo-ac_onb-ac_gw-documento-soap" source="id-ac_onb" target="id-ac_gw" xsi:type="Flow"><name xml:lang="es">Documento (SOAP)</name></relationship>
+    <relationship identifier="id-r-flo-ac_gw-ac_ing-document-tmf667" source="id-ac_gw" target="id-ac_ing" xsi:type="Flow"><name xml:lang="es">Document (TMF667)</name></relationship>
+    <relationship identifier="id-r-flo-ac_ing-ac_srch-binario-metadatos-v" source="id-ac_ing" target="id-ac_srch" xsi:type="Flow"><name xml:lang="es">Binario + metadatos (vía Blob)</name></relationship>
+    <relationship identifier="id-r-flo-ac_srch-ac_mas-fragmentos-con-cita" source="id-ac_srch" target="id-ac_mas" xsi:type="Flow"><name xml:lang="es">Fragmentos con cita</name></relationship>
+    <relationship identifier="id-r-flo-ac_mas-ac_back-hallazgos-y-borrador" source="id-ac_mas" target="id-ac_back" xsi:type="Flow"><name xml:lang="es">Hallazgos y borrador</name></relationship>
+    <relationship identifier="id-r-flo-ac_back-ac_ing-documento-aprobado" source="id-ac_back" target="id-ac_ing" xsi:type="Flow"><name xml:lang="es">Documento aprobado</name></relationship>
+    <relationship identifier="id-r-flo-ac_ing-ac_gw-document-aprobado-po" source="id-ac_ing" target="id-ac_gw" xsi:type="Flow"><name xml:lang="es">Document aprobado (POST)</name></relationship>
+    <relationship identifier="id-r-flo-ac_gw-ac_onb-revisi-n-no-vigente" source="id-ac_gw" target="id-ac_onb" xsi:type="Flow"><name xml:lang="es">Revisión no vigente (SOAP)</name></relationship>
+    <relationship identifier="id-r-flo-ac_mas-ac_cbot-respuesta-con-cita-a" source="id-ac_mas" target="id-ac_cbot" xsi:type="Flow"><name xml:lang="es">Respuesta con cita (AG-16)</name></relationship>
+    <relationship identifier="id-r-flo-ac_web-ac_back-solicitud-decisiones" source="id-ac_web" target="id-ac_back" xsi:type="Flow"><name xml:lang="es">Solicitud, decisiones HITL</name></relationship>
+    <relationship identifier="id-r-agg-col_ing-ac_gw" source="id-col_ing" target="id-ac_gw" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_ing-ac_ing" source="id-col_ing" target="id-ac_ing" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_ing-ac_srch" source="id-col_ing" target="id-ac_srch" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_ana-ac_web" source="id-col_ana" target="id-ac_web" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_ana-ac_back" source="id-col_ana" target="id-ac_back" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_ana-ac_mas" source="id-col_ana" target="id-ac_mas" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_ana-ac_srch" source="id-col_ana" target="id-ac_srch" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_con-ac_cbot" source="id-col_con" target="id-ac_cbot" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_con-ac_mas" source="id-col_con" target="id-ac_mas" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_con-ac_srch" source="id-col_con" target="id-ac_srch" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_car-ac_web" source="id-col_car" target="id-ac_web" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_car-ac_back" source="id-col_car" target="id-ac_back" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_car-ac_ing" source="id-col_car" target="id-ac_ing" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_car-ac_gw" source="id-col_car" target="id-ac_gw" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-col_car-ac_onb" source="id-col_car" target="id-ac_onb" xsi:type="Aggregation" />
+    <relationship identifier="id-r-rea-p01-cap01" source="id-p01" target="id-cap01" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-p02-cap01" source="id-p02" target="id-cap01" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-p03-cap01" source="id-p03" target="id-cap01" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_cbot-cap02" source="id-ac_cbot" target="id-cap02" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_cbot-cap03" source="id-ac_cbot" target="id-cap03" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_mas-cap04" source="id-ac_mas" target="id-cap04" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_back-cap05" source="id-ac_back" target="id-cap05" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-p06-cap05" source="id-p06" target="id-cap05" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-p07-cap06" source="id-p07" target="id-cap06" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-p08-cap06" source="id-p08" target="id-cap06" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-p09-cap07" source="id-p09" target="id-cap07" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_onb-cap08" source="id-ac_onb" target="id-cap08" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-p10-cap08" source="id-p10" target="id-cap08" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_gw-cap09" source="id-ac_gw" target="id-cap09" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-ac_srch-cap10" source="id-ac_srch" target="id-cap10" xsi:type="Realization" />
+    <relationship identifier="id-r-rea-p11-cap11" source="id-p11" target="id-cap11" xsi:type="Realization" />
+    <relationship identifier="id-r-agg-do_doc-do_att" source="id-do_doc" target="id-do_att" xsi:type="Aggregation" />
+    <relationship identifier="id-r-ass-do_rel-do_doc-relaciona" source="id-do_rel" target="id-do_doc" xsi:type="Association"><name xml:lang="es">relaciona</name></relationship>
+    <relationship identifier="id-r-ass-do_doc-do_ver-se-ingiere-como" source="id-do_doc" target="id-do_ver" xsi:type="Association"><name xml:lang="es">se ingiere como</name></relationship>
+    <relationship identifier="id-r-agg-do_ver-do_frag" source="id-do_ver" target="id-do_frag" xsi:type="Aggregation" />
+    <relationship identifier="id-r-ass-do_sol-do_doc-impacta" source="id-do_sol" target="id-do_doc" xsi:type="Association"><name xml:lang="es">impacta</name></relationship>
+    <relationship identifier="id-r-agg-do_sol-do_eje" source="id-do_sol" target="id-do_eje" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-do_eje-do_hal" source="id-do_eje" target="id-do_hal" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-do_sol-do_bor" source="id-do_sol" target="id-do_bor" xsi:type="Aggregation" />
+    <relationship identifier="id-r-ass-do_bor-do_hal-incorpora" source="id-do_bor" target="id-do_hal" xsi:type="Association"><name xml:lang="es">incorpora</name></relationship>
+    <relationship identifier="id-r-agg-do_bor-do_apr" source="id-do_bor" target="id-do_apr" xsi:type="Aggregation" />
+    <relationship identifier="id-r-ass-do_bor-do_car-se-carga-en" source="id-do_bor" target="id-do_car" xsi:type="Association"><name xml:lang="es">se carga en</name></relationship>
+    <relationship identifier="id-r-ass-do_car-do_doc-crea-revisi-n-de" source="id-do_car" target="id-do_doc" xsi:type="Association"><name xml:lang="es">crea revisión de</name></relationship>
+    <relationship identifier="id-r-acc-ac_onb-do_doc" source="id-ac_onb" target="id-do_doc" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-r-acc-ac_ing-do_doc" source="id-ac_ing" target="id-do_doc" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-r-acc-ac_ing-do_ver" source="id-ac_ing" target="id-do_ver" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-r-acc-ac_srch-do_frag" source="id-ac_srch" target="id-do_frag" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-r-acc-ac_mas-do_frag" source="id-ac_mas" target="id-do_frag" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-r-acc-ac_mas-do_hal" source="id-ac_mas" target="id-do_hal" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-r-acc-ac_back-do_sol" source="id-ac_back" target="id-do_sol" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-r-acc-ac_back-do_eje" source="id-ac_back" target="id-do_eje" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-r-acc-ac_back-do_bor" source="id-ac_back" target="id-do_bor" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-r-acc-ac_back-do_apr" source="id-ac_back" target="id-do_apr" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-r-acc-ac_ing-do_car" source="id-ac_ing" target="id-do_car" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-r-agg-loc_dc-n_obs" source="id-loc_dc" target="id-n_obs" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_dc-n_gws" source="id-loc_dc" target="id-n_gws" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_dc-d_fw" source="id-loc_dc" target="id-d_fw" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_dc-n_sgp" source="id-loc_dc" target="id-n_sgp" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_dc-cn_lan" source="id-loc_dc" target="id-cn_lan" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_az-n_vgw" source="id-loc_az" target="id-n_vgw" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_az-cn_vnet" source="id-loc_az" target="id-cn_vnet" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_az-n_aca" source="id-loc_az" target="id-n_aca" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_az-n_blob" source="id-loc_az" target="id-n_blob" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_az-n_srch" source="id-loc_az" target="id-n_srch" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_az-n_fdy" source="id-loc_az" target="id-n_fdy" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_az-n_kv" source="id-loc_az" target="id-n_kv" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_az-n_db" source="id-loc_az" target="id-n_db" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_az-n_mon" source="id-loc_az" target="id-n_mon" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_m365-n_cps" source="id-loc_m365" target="id-n_cps" xsi:type="Aggregation" />
+    <relationship identifier="id-r-agg-loc_m365-n_entra" source="id-loc_m365" target="id-n_entra" xsi:type="Aggregation" />
+    <relationship identifier="id-r-ass-n_obs-cn_lan" source="id-n_obs" target="id-cn_lan" xsi:type="Association" />
+    <relationship identifier="id-r-ass-n_gws-cn_lan" source="id-n_gws" target="id-cn_lan" xsi:type="Association" />
+    <relationship identifier="id-r-ass-d_fw-cn_lan" source="id-d_fw" target="id-cn_lan" xsi:type="Association" />
+    <relationship identifier="id-r-ass-n_sgp-cn_lan" source="id-n_sgp" target="id-cn_lan" xsi:type="Association" />
+    <relationship identifier="id-r-ass-p_vpn-d_fw" source="id-p_vpn" target="id-d_fw" xsi:type="Association" />
+    <relationship identifier="id-r-ass-p_vpn-n_vgw" source="id-p_vpn" target="id-n_vgw" xsi:type="Association" />
+    <relationship identifier="id-r-ass-n_vgw-cn_vnet" source="id-n_vgw" target="id-cn_vnet" xsi:type="Association" />
+    <relationship identifier="id-r-ass-n_aca-cn_vnet" source="id-n_aca" target="id-cn_vnet" xsi:type="Association" />
+    <relationship identifier="id-r-ass-n_blob-cn_vnet" source="id-n_blob" target="id-cn_vnet" xsi:type="Association" />
+    <relationship identifier="id-r-ass-n_srch-cn_vnet" source="id-n_srch" target="id-cn_vnet" xsi:type="Association" />
+    <relationship identifier="id-r-ass-n_fdy-cn_vnet" source="id-n_fdy" target="id-cn_vnet" xsi:type="Association" />
+    <relationship identifier="id-r-ass-n_kv-cn_vnet" source="id-n_kv" target="id-cn_vnet" xsi:type="Association" />
+    <relationship identifier="id-r-ass-n_db-cn_vnet" source="id-n_db" target="id-cn_vnet" xsi:type="Association" />
+    <relationship identifier="id-r-ser-n_obs-ac_onb" source="id-n_obs" target="id-ac_onb" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_gws-ac_gw" source="id-n_gws" target="id-ac_gw" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_sgp-ac_sgp" source="id-n_sgp" target="id-ac_sgp" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_aca-ac_web" source="id-n_aca" target="id-ac_web" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_aca-ac_back" source="id-n_aca" target="id-ac_back" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_aca-ac_ing" source="id-n_aca" target="id-ac_ing" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_srch-ac_srch" source="id-n_srch" target="id-ac_srch" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_fdy-ac_mas" source="id-n_fdy" target="id-ac_mas" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_cps-ac_cbot" source="id-n_cps" target="id-ac_cbot" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_blob-ac_ing" source="id-n_blob" target="id-ac_ing" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_blob-ac_srch" source="id-n_blob" target="id-ac_srch" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_db-ac_back" source="id-n_db" target="id-ac_back" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_kv-ac_ing" source="id-n_kv" target="id-ac_ing" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_entra-ac_web" source="id-n_entra" target="id-ac_web" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_mon-ac_back" source="id-n_mon" target="id-ac_back" xsi:type="Serving" />
+    <relationship identifier="id-r-ser-n_fdy-ac_cbot" source="id-n_fdy" target="id-ac_cbot" xsi:type="Serving" />
+  </relationships>
+  <organizations>
+    <item><label xml:lang="es">Estrategia</label>
+      <item identifierRef="id-cap01" />
+      <item identifierRef="id-cap02" />
+      <item identifierRef="id-cap03" />
+      <item identifierRef="id-cap04" />
+      <item identifierRef="id-cap05" />
+      <item identifierRef="id-cap06" />
+      <item identifierRef="id-cap07" />
+      <item identifierRef="id-cap08" />
+      <item identifierRef="id-cap09" />
+      <item identifierRef="id-cap10" />
+      <item identifierRef="id-cap11" />
+    </item>
+    <item><label xml:lang="es">Negocio</label>
+      <item identifierRef="id-rol_sol" />
+      <item identifierRef="id-rol_ip" />
+      <item identifierRef="id-rol_jip" />
+      <item identifierRef="id-rol_area" />
+      <item identifierRef="id-rol_ger" />
+      <item identifierRef="id-rol_gcias" />
+      <item identifierRef="id-rol_aob" />
+      <item identifierRef="id-rol_col" />
+      <item identifierRef="id-p01" />
+      <item identifierRef="id-p02" />
+      <item identifierRef="id-p03" />
+      <item identifierRef="id-p04" />
+      <item identifierRef="id-p05" />
+      <item identifierRef="id-p06" />
+      <item identifierRef="id-p07" />
+      <item identifierRef="id-p08" />
+      <item identifierRef="id-p09" />
+      <item identifierRef="id-p10" />
+      <item identifierRef="id-p11" />
+      <item identifierRef="id-bp_act" />
+      <item identifierRef="id-ev_ini" />
+      <item identifierRef="id-ev_fin" />
+    </item>
+    <item><label xml:lang="es">Aplicación</label>
+      <item identifierRef="id-ac_onb" />
+      <item identifierRef="id-ac_sgp" />
+      <item identifierRef="id-ac_mail" />
+      <item identifierRef="id-ac_gw" />
+      <item identifierRef="id-ac_ing" />
+      <item identifierRef="id-ac_back" />
+      <item identifierRef="id-ac_web" />
+      <item identifierRef="id-ac_srch" />
+      <item identifierRef="id-ac_mas" />
+      <item identifierRef="id-ac_cbot" />
+      <item identifierRef="id-ai_soap" />
+      <item identifierRef="id-ai_tmf" />
+      <item identifierRef="id-ai_papi" />
+      <item identifierRef="id-ai_web" />
+      <item identifierRef="id-ai_chat" />
+      <item identifierRef="id-as_ident" />
+      <item identifierRef="id-as_consulta" />
+      <item identifierRef="id-as_analisis" />
+      <item identifierRef="id-as_hitl" />
+      <item identifierRef="id-as_carga" />
+      <item identifierRef="id-as_ingesta" />
+      <item identifierRef="id-as_rag" />
+      <item identifierRef="id-as_repo" />
+      <item identifierRef="id-as_tick" />
+      <item identifierRef="id-col_ing" />
+      <item identifierRef="id-col_ana" />
+      <item identifierRef="id-col_con" />
+      <item identifierRef="id-col_car" />
+      <item identifierRef="id-do_doc" />
+      <item identifierRef="id-do_att" />
+      <item identifierRef="id-do_rel" />
+      <item identifierRef="id-do_ver" />
+      <item identifierRef="id-do_frag" />
+      <item identifierRef="id-do_sol" />
+      <item identifierRef="id-do_eje" />
+      <item identifierRef="id-do_hal" />
+      <item identifierRef="id-do_bor" />
+      <item identifierRef="id-do_apr" />
+      <item identifierRef="id-do_car" />
+    </item>
+    <item><label xml:lang="es">Tecnología y física</label>
+      <item identifierRef="id-n_obs" />
+      <item identifierRef="id-n_gws" />
+      <item identifierRef="id-d_fw" />
+      <item identifierRef="id-n_sgp" />
+      <item identifierRef="id-cn_lan" />
+      <item identifierRef="id-p_vpn" />
+      <item identifierRef="id-n_vgw" />
+      <item identifierRef="id-cn_vnet" />
+      <item identifierRef="id-n_aca" />
+      <item identifierRef="id-n_blob" />
+      <item identifierRef="id-n_srch" />
+      <item identifierRef="id-n_fdy" />
+      <item identifierRef="id-n_kv" />
+      <item identifierRef="id-n_db" />
+      <item identifierRef="id-n_mon" />
+      <item identifierRef="id-n_entra" />
+      <item identifierRef="id-n_cps" />
+    </item>
+    <item><label xml:lang="es">Otros</label>
+      <item identifierRef="id-grp_sin" />
+      <item identifierRef="id-grp_mod" />
+      <item identifierRef="id-grp_new" />
+      <item identifierRef="id-loc_dc" />
+      <item identifierRef="id-loc_az" />
+      <item identifierRef="id-loc_m365" />
+      <item identifierRef="id-grp_neg" />
+      <item identifierRef="id-grp_si" />
+      <item identifierRef="id-grp_tec" />
+    </item>
+    <item><label xml:lang="es">Relaciones</label>
+      <item identifierRef="id-r-com-bp_act-p01" />
+      <item identifierRef="id-r-com-bp_act-p02" />
+      <item identifierRef="id-r-com-bp_act-p03" />
+      <item identifierRef="id-r-com-bp_act-p04" />
+      <item identifierRef="id-r-com-bp_act-p05" />
+      <item identifierRef="id-r-com-bp_act-p06" />
+      <item identifierRef="id-r-com-bp_act-p07" />
+      <item identifierRef="id-r-com-bp_act-p08" />
+      <item identifierRef="id-r-com-bp_act-p09" />
+      <item identifierRef="id-r-com-bp_act-p10" />
+      <item identifierRef="id-r-com-bp_act-p11" />
+      <item identifierRef="id-r-tri-ev_ini-p01" />
+      <item identifierRef="id-r-tri-p01-p02" />
+      <item identifierRef="id-r-tri-p02-p03" />
+      <item identifierRef="id-r-tri-p03-p04" />
+      <item identifierRef="id-r-tri-p04-p05" />
+      <item identifierRef="id-r-tri-p05-p06" />
+      <item identifierRef="id-r-tri-p06-p07" />
+      <item identifierRef="id-r-tri-p07-p08" />
+      <item identifierRef="id-r-tri-p08-p09" />
+      <item identifierRef="id-r-tri-p09-p10" />
+      <item identifierRef="id-r-tri-p10-p11" />
+      <item identifierRef="id-r-tri-p11-ev_fin" />
+      <item identifierRef="id-r-ass-rol_sol-p01" />
+      <item identifierRef="id-r-ass-rol_ip-p02" />
+      <item identifierRef="id-r-ass-rol_jip-p03" />
+      <item identifierRef="id-r-ass-rol_ip-p04" />
+      <item identifierRef="id-r-ass-rol_ip-p05" />
+      <item identifierRef="id-r-ass-rol_ip-p06" />
+      <item identifierRef="id-r-ass-rol_area-p07" />
+      <item identifierRef="id-r-ass-rol_ger-p08" />
+      <item identifierRef="id-r-ass-rol_gcias-p09" />
+      <item identifierRef="id-r-ass-rol_ip-p10" />
+      <item identifierRef="id-r-ass-rol_aob-p10" />
+      <item identifierRef="id-r-ass-rol_ip-p11" />
+      <item identifierRef="id-r-ass-rol_ip-bp_act" />
+      <item identifierRef="id-r-ass-rol_jip-bp_act" />
+      <item identifierRef="id-r-agg-grp_sin-cap01" />
+      <item identifierRef="id-r-agg-grp_new-cap02" />
+      <item identifierRef="id-r-agg-grp_new-cap03" />
+      <item identifierRef="id-r-agg-grp_new-cap04" />
+      <item identifierRef="id-r-agg-grp_mod-cap05" />
+      <item identifierRef="id-r-agg-grp_mod-cap06" />
+      <item identifierRef="id-r-agg-grp_sin-cap07" />
+      <item identifierRef="id-r-agg-grp_mod-cap08" />
+      <item identifierRef="id-r-agg-grp_new-cap09" />
+      <item identifierRef="id-r-agg-grp_new-cap10" />
+      <item identifierRef="id-r-agg-grp_sin-cap11" />
+      <item identifierRef="id-r-com-ac_onb-ai_soap" />
+      <item identifierRef="id-r-com-ac_gw-ai_tmf" />
+      <item identifierRef="id-r-com-ac_back-ai_papi" />
+      <item identifierRef="id-r-com-ac_web-ai_web" />
+      <item identifierRef="id-r-com-ac_cbot-ai_chat" />
+      <item identifierRef="id-r-ser-ai_soap-ac_gw" />
+      <item identifierRef="id-r-ser-ai_tmf-ac_ing" />
+      <item identifierRef="id-r-ser-ai_papi-ac_web" />
+      <item identifierRef="id-r-ser-ai_web-rol_ip" />
+      <item identifierRef="id-r-ser-ai_chat-rol_ip" />
+      <item identifierRef="id-r-ser-ai_chat-rol_col" />
+      <item identifierRef="id-r-rea-ac_cbot-as_ident" />
+      <item identifierRef="id-r-rea-ac_cbot-as_consulta" />
+      <item identifierRef="id-r-rea-ac_mas-as_analisis" />
+      <item identifierRef="id-r-rea-ac_back-as_hitl" />
+      <item identifierRef="id-r-rea-ac_ing-as_carga" />
+      <item identifierRef="id-r-rea-ac_ing-as_ingesta" />
+      <item identifierRef="id-r-rea-ac_srch-as_rag" />
+      <item identifierRef="id-r-rea-ac_onb-as_repo" />
+      <item identifierRef="id-r-rea-ac_sgp-as_tick" />
+      <item identifierRef="id-r-ser-as_ident-p04" />
+      <item identifierRef="id-r-ser-as_consulta-p05" />
+      <item identifierRef="id-r-ser-as_analisis-p06" />
+      <item identifierRef="id-r-ser-as_hitl-p06" />
+      <item identifierRef="id-r-ser-as_hitl-p07" />
+      <item identifierRef="id-r-ser-as_hitl-p08" />
+      <item identifierRef="id-r-ser-as_carga-p10" />
+      <item identifierRef="id-r-ser-as_repo-p10" />
+      <item identifierRef="id-r-ser-as_tick-p01" />
+      <item identifierRef="id-r-ser-as_repo-bp_act" />
+      <item identifierRef="id-r-ser-as_tick-bp_act" />
+      <item identifierRef="id-r-ser-ac_mail-bp_act" />
+      <item identifierRef="id-r-ser-as_rag-ac_mas" />
+      <item identifierRef="id-r-ser-as_ingesta-ac_srch" />
+      <item identifierRef="id-r-flo-ac_onb-ac_gw-documento-soap" />
+      <item identifierRef="id-r-flo-ac_gw-ac_ing-document-tmf667" />
+      <item identifierRef="id-r-flo-ac_ing-ac_srch-binario-metadatos-v" />
+      <item identifierRef="id-r-flo-ac_srch-ac_mas-fragmentos-con-cita" />
+      <item identifierRef="id-r-flo-ac_mas-ac_back-hallazgos-y-borrador" />
+      <item identifierRef="id-r-flo-ac_back-ac_ing-documento-aprobado" />
+      <item identifierRef="id-r-flo-ac_ing-ac_gw-document-aprobado-po" />
+      <item identifierRef="id-r-flo-ac_gw-ac_onb-revisi-n-no-vigente" />
+      <item identifierRef="id-r-flo-ac_mas-ac_cbot-respuesta-con-cita-a" />
+      <item identifierRef="id-r-flo-ac_web-ac_back-solicitud-decisiones" />
+      <item identifierRef="id-r-agg-col_ing-ac_gw" />
+      <item identifierRef="id-r-agg-col_ing-ac_ing" />
+      <item identifierRef="id-r-agg-col_ing-ac_srch" />
+      <item identifierRef="id-r-agg-col_ana-ac_web" />
+      <item identifierRef="id-r-agg-col_ana-ac_back" />
+      <item identifierRef="id-r-agg-col_ana-ac_mas" />
+      <item identifierRef="id-r-agg-col_ana-ac_srch" />
+      <item identifierRef="id-r-agg-col_con-ac_cbot" />
+      <item identifierRef="id-r-agg-col_con-ac_mas" />
+      <item identifierRef="id-r-agg-col_con-ac_srch" />
+      <item identifierRef="id-r-agg-col_car-ac_web" />
+      <item identifierRef="id-r-agg-col_car-ac_back" />
+      <item identifierRef="id-r-agg-col_car-ac_ing" />
+      <item identifierRef="id-r-agg-col_car-ac_gw" />
+      <item identifierRef="id-r-agg-col_car-ac_onb" />
+      <item identifierRef="id-r-rea-p01-cap01" />
+      <item identifierRef="id-r-rea-p02-cap01" />
+      <item identifierRef="id-r-rea-p03-cap01" />
+      <item identifierRef="id-r-rea-ac_cbot-cap02" />
+      <item identifierRef="id-r-rea-ac_cbot-cap03" />
+      <item identifierRef="id-r-rea-ac_mas-cap04" />
+      <item identifierRef="id-r-rea-ac_back-cap05" />
+      <item identifierRef="id-r-rea-p06-cap05" />
+      <item identifierRef="id-r-rea-p07-cap06" />
+      <item identifierRef="id-r-rea-p08-cap06" />
+      <item identifierRef="id-r-rea-p09-cap07" />
+      <item identifierRef="id-r-rea-ac_onb-cap08" />
+      <item identifierRef="id-r-rea-p10-cap08" />
+      <item identifierRef="id-r-rea-ac_gw-cap09" />
+      <item identifierRef="id-r-rea-ac_srch-cap10" />
+      <item identifierRef="id-r-rea-p11-cap11" />
+      <item identifierRef="id-r-agg-do_doc-do_att" />
+      <item identifierRef="id-r-ass-do_rel-do_doc-relaciona" />
+      <item identifierRef="id-r-ass-do_doc-do_ver-se-ingiere-como" />
+      <item identifierRef="id-r-agg-do_ver-do_frag" />
+      <item identifierRef="id-r-ass-do_sol-do_doc-impacta" />
+      <item identifierRef="id-r-agg-do_sol-do_eje" />
+      <item identifierRef="id-r-agg-do_eje-do_hal" />
+      <item identifierRef="id-r-agg-do_sol-do_bor" />
+      <item identifierRef="id-r-ass-do_bor-do_hal-incorpora" />
+      <item identifierRef="id-r-agg-do_bor-do_apr" />
+      <item identifierRef="id-r-ass-do_bor-do_car-se-carga-en" />
+      <item identifierRef="id-r-ass-do_car-do_doc-crea-revisi-n-de" />
+      <item identifierRef="id-r-acc-ac_onb-do_doc" />
+      <item identifierRef="id-r-acc-ac_ing-do_doc" />
+      <item identifierRef="id-r-acc-ac_ing-do_ver" />
+      <item identifierRef="id-r-acc-ac_srch-do_frag" />
+      <item identifierRef="id-r-acc-ac_mas-do_frag" />
+      <item identifierRef="id-r-acc-ac_mas-do_hal" />
+      <item identifierRef="id-r-acc-ac_back-do_sol" />
+      <item identifierRef="id-r-acc-ac_back-do_eje" />
+      <item identifierRef="id-r-acc-ac_back-do_bor" />
+      <item identifierRef="id-r-acc-ac_back-do_apr" />
+      <item identifierRef="id-r-acc-ac_ing-do_car" />
+      <item identifierRef="id-r-agg-loc_dc-n_obs" />
+      <item identifierRef="id-r-agg-loc_dc-n_gws" />
+      <item identifierRef="id-r-agg-loc_dc-d_fw" />
+      <item identifierRef="id-r-agg-loc_dc-n_sgp" />
+      <item identifierRef="id-r-agg-loc_dc-cn_lan" />
+      <item identifierRef="id-r-agg-loc_az-n_vgw" />
+      <item identifierRef="id-r-agg-loc_az-cn_vnet" />
+      <item identifierRef="id-r-agg-loc_az-n_aca" />
+      <item identifierRef="id-r-agg-loc_az-n_blob" />
+      <item identifierRef="id-r-agg-loc_az-n_srch" />
+      <item identifierRef="id-r-agg-loc_az-n_fdy" />
+      <item identifierRef="id-r-agg-loc_az-n_kv" />
+      <item identifierRef="id-r-agg-loc_az-n_db" />
+      <item identifierRef="id-r-agg-loc_az-n_mon" />
+      <item identifierRef="id-r-agg-loc_m365-n_cps" />
+      <item identifierRef="id-r-agg-loc_m365-n_entra" />
+      <item identifierRef="id-r-ass-n_obs-cn_lan" />
+      <item identifierRef="id-r-ass-n_gws-cn_lan" />
+      <item identifierRef="id-r-ass-d_fw-cn_lan" />
+      <item identifierRef="id-r-ass-n_sgp-cn_lan" />
+      <item identifierRef="id-r-ass-p_vpn-d_fw" />
+      <item identifierRef="id-r-ass-p_vpn-n_vgw" />
+      <item identifierRef="id-r-ass-n_vgw-cn_vnet" />
+      <item identifierRef="id-r-ass-n_aca-cn_vnet" />
+      <item identifierRef="id-r-ass-n_blob-cn_vnet" />
+      <item identifierRef="id-r-ass-n_srch-cn_vnet" />
+      <item identifierRef="id-r-ass-n_fdy-cn_vnet" />
+      <item identifierRef="id-r-ass-n_kv-cn_vnet" />
+      <item identifierRef="id-r-ass-n_db-cn_vnet" />
+      <item identifierRef="id-r-ser-n_obs-ac_onb" />
+      <item identifierRef="id-r-ser-n_gws-ac_gw" />
+      <item identifierRef="id-r-ser-n_sgp-ac_sgp" />
+      <item identifierRef="id-r-ser-n_aca-ac_web" />
+      <item identifierRef="id-r-ser-n_aca-ac_back" />
+      <item identifierRef="id-r-ser-n_aca-ac_ing" />
+      <item identifierRef="id-r-ser-n_srch-ac_srch" />
+      <item identifierRef="id-r-ser-n_fdy-ac_mas" />
+      <item identifierRef="id-r-ser-n_cps-ac_cbot" />
+      <item identifierRef="id-r-ser-n_blob-ac_ing" />
+      <item identifierRef="id-r-ser-n_blob-ac_srch" />
+      <item identifierRef="id-r-ser-n_db-ac_back" />
+      <item identifierRef="id-r-ser-n_kv-ac_ing" />
+      <item identifierRef="id-r-ser-n_entra-ac_web" />
+      <item identifierRef="id-r-ser-n_mon-ac_back" />
+      <item identifierRef="id-r-ser-n_fdy-ac_cbot" />
+    </item>
+    <item><label xml:lang="es">Vistas</label>
+      <item identifierRef="id-v-v01" />
+      <item identifierRef="id-v-v02" />
+      <item identifierRef="id-v-v03" />
+      <item identifierRef="id-v-v04" />
+      <item identifierRef="id-v-v05" />
+      <item identifierRef="id-v-v06" />
+      <item identifierRef="id-v-v07" />
+      <item identifierRef="id-v-v08" />
+      <item identifierRef="id-v-v09" />
+    </item>
+  </organizations>
+  <propertyDefinitions>
+    <propertyDefinition identifier="propid-1" type="string"><name xml:lang="es">Cambio</name></propertyDefinition>
+  </propertyDefinitions>
+  <views>
+    <diagrams>
+      <view identifier="id-v-v01" xsi:type="Diagram" viewpoint="Capability Map">
+        <name xml:lang="es">01 Evaluación de capacidades</name>
+        <documentation xml:lang="es">Capacidades afectadas por Process One agrupadas por cambio requerido (semáforo del formato corporativo).</documentation>
+        <node identifier="id-v-v01-n-grp_sin" elementRef="id-grp_sin" xsi:type="Element" x="30" y="30" w="200" h="269">
+          <style><fillColor r="250" g="250" b="250" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v01-n-cap01" elementRef="id-cap01" xsi:type="Element" x="44" y="60" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v01-n-cap07" elementRef="id-cap07" xsi:type="Element" x="44" y="145" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v01-n-cap11" elementRef="id-cap11" xsi:type="Element" x="44" y="230" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v01-n-grp_mod" elementRef="id-grp_mod" xsi:type="Element" x="260" y="30" w="200" h="269">
+          <style><fillColor r="250" g="250" b="250" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v01-n-cap05" elementRef="id-cap05" xsi:type="Element" x="274" y="60" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v01-n-cap06" elementRef="id-cap06" xsi:type="Element" x="274" y="145" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v01-n-cap08" elementRef="id-cap08" xsi:type="Element" x="274" y="230" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v01-n-grp_new" elementRef="id-grp_new" xsi:type="Element" x="490" y="30" w="400" h="269">
+          <style><fillColor r="250" g="250" b="250" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v01-n-cap02" elementRef="id-cap02" xsi:type="Element" x="504" y="60" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v01-n-cap03" elementRef="id-cap03" xsi:type="Element" x="704" y="60" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v01-n-cap04" elementRef="id-cap04" xsi:type="Element" x="504" y="145" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v01-n-cap09" elementRef="id-cap09" xsi:type="Element" x="704" y="145" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v01-n-cap10" elementRef="id-cap10" xsi:type="Element" x="504" y="230" w="172" h="55">
+            <style><fillColor r="245" g="222" b="170" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+      </view>
+      <view identifier="id-v-v02" xsi:type="Diagram" viewpoint="Business Process Cooperation">
+        <name xml:lang="es">02 Proceso AS-IS – actualización de procesos y manuales</name>
+        <documentation xml:lang="es">Proceso actual de 11 pasos, sin asistencia de IA.</documentation>
+        <node identifier="id-v-v02-n-ev_ini" elementRef="id-ev_ini" xsi:type="Element" x="30" y="125" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p01" elementRef="id-p01" xsi:type="Element" x="195" y="118" w="141" h="68">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p02" elementRef="id-p02" xsi:type="Element" x="360" y="125" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p03" elementRef="id-p03" xsi:type="Element" x="525" y="125" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p04" elementRef="id-p04" xsi:type="Element" x="690" y="118" w="141" h="68">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p05" elementRef="id-p05" xsi:type="Element" x="855" y="125" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p06" elementRef="id-p06" xsi:type="Element" x="1020" y="118" w="141" h="68">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p07" elementRef="id-p07" xsi:type="Element" x="1020" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p08" elementRef="id-p08" xsi:type="Element" x="855" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p09" elementRef="id-p09" xsi:type="Element" x="690" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p10" elementRef="id-p10" xsi:type="Element" x="525" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-p11" elementRef="id-p11" xsi:type="Element" x="360" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-ev_fin" elementRef="id-ev_fin" xsi:type="Element" x="195" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_sol" elementRef="id-rol_sol" xsi:type="Element" x="195" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_ip-2" elementRef="id-rol_ip" xsi:type="Element" x="360" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_jip" elementRef="id-rol_jip" xsi:type="Element" x="525" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_ip-4" elementRef="id-rol_ip" xsi:type="Element" x="690" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_ip-5" elementRef="id-rol_ip" xsi:type="Element" x="855" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_ip-6" elementRef="id-rol_ip" xsi:type="Element" x="1020" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_area" elementRef="id-rol_area" xsi:type="Element" x="1020" y="410" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_ger" elementRef="id-rol_ger" xsi:type="Element" x="855" y="410" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_gcias" elementRef="id-rol_gcias" xsi:type="Element" x="690" y="404" w="141" h="68">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_aob" elementRef="id-rol_aob" xsi:type="Element" x="525" y="496" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_ip-10" elementRef="id-rol_ip" xsi:type="Element" x="525" y="410" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-rol_ip-11" elementRef="id-rol_ip" xsi:type="Element" x="360" y="410" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-as_tick" elementRef="id-as_tick" xsi:type="Element" x="46" y="239" w="141" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v02-n-as_repo" elementRef="id-as_repo" xsi:type="Element" x="418" y="225" w="141" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <connection identifier="id-v-v02-c-ev_ini-p01-tri" relationshipRef="id-r-tri-ev_ini-p01" xsi:type="Relationship" source="id-v-v02-n-ev_ini" target="id-v-v02-n-p01">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p01-p02-tri" relationshipRef="id-r-tri-p01-p02" xsi:type="Relationship" source="id-v-v02-n-p01" target="id-v-v02-n-p02">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p02-p03-tri" relationshipRef="id-r-tri-p02-p03" xsi:type="Relationship" source="id-v-v02-n-p02" target="id-v-v02-n-p03">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p03-p04-tri" relationshipRef="id-r-tri-p03-p04" xsi:type="Relationship" source="id-v-v02-n-p03" target="id-v-v02-n-p04">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p04-p05-tri" relationshipRef="id-r-tri-p04-p05" xsi:type="Relationship" source="id-v-v02-n-p04" target="id-v-v02-n-p05">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p05-p06-tri" relationshipRef="id-r-tri-p05-p06" xsi:type="Relationship" source="id-v-v02-n-p05" target="id-v-v02-n-p06">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p06-p07-tri" relationshipRef="id-r-tri-p06-p07" xsi:type="Relationship" source="id-v-v02-n-p06" target="id-v-v02-n-p07">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p07-p08-tri" relationshipRef="id-r-tri-p07-p08" xsi:type="Relationship" source="id-v-v02-n-p07" target="id-v-v02-n-p08">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p08-p09-tri" relationshipRef="id-r-tri-p08-p09" xsi:type="Relationship" source="id-v-v02-n-p08" target="id-v-v02-n-p09">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p09-p10-tri" relationshipRef="id-r-tri-p09-p10" xsi:type="Relationship" source="id-v-v02-n-p09" target="id-v-v02-n-p10">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p10-p11-tri" relationshipRef="id-r-tri-p10-p11" xsi:type="Relationship" source="id-v-v02-n-p10" target="id-v-v02-n-p11">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-p11-ev_fin-tri" relationshipRef="id-r-tri-p11-ev_fin" xsi:type="Relationship" source="id-v-v02-n-p11" target="id-v-v02-n-ev_fin">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_sol-p01-ass" relationshipRef="id-r-ass-rol_sol-p01" xsi:type="Relationship" source="id-v-v02-n-rol_sol" target="id-v-v02-n-p01">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_ip-2-p02-ass" relationshipRef="id-r-ass-rol_ip-p02" xsi:type="Relationship" source="id-v-v02-n-rol_ip-2" target="id-v-v02-n-p02">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_jip-p03-ass" relationshipRef="id-r-ass-rol_jip-p03" xsi:type="Relationship" source="id-v-v02-n-rol_jip" target="id-v-v02-n-p03">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_ip-4-p04-ass" relationshipRef="id-r-ass-rol_ip-p04" xsi:type="Relationship" source="id-v-v02-n-rol_ip-4" target="id-v-v02-n-p04">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_ip-5-p05-ass" relationshipRef="id-r-ass-rol_ip-p05" xsi:type="Relationship" source="id-v-v02-n-rol_ip-5" target="id-v-v02-n-p05">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_ip-6-p06-ass" relationshipRef="id-r-ass-rol_ip-p06" xsi:type="Relationship" source="id-v-v02-n-rol_ip-6" target="id-v-v02-n-p06">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_area-p07-ass" relationshipRef="id-r-ass-rol_area-p07" xsi:type="Relationship" source="id-v-v02-n-rol_area" target="id-v-v02-n-p07">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_ger-p08-ass" relationshipRef="id-r-ass-rol_ger-p08" xsi:type="Relationship" source="id-v-v02-n-rol_ger" target="id-v-v02-n-p08">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_gcias-p09-ass" relationshipRef="id-r-ass-rol_gcias-p09" xsi:type="Relationship" source="id-v-v02-n-rol_gcias" target="id-v-v02-n-p09">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_ip-10-p10-ass" relationshipRef="id-r-ass-rol_ip-p10" xsi:type="Relationship" source="id-v-v02-n-rol_ip-10" target="id-v-v02-n-p10">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_ip-11-p11-ass" relationshipRef="id-r-ass-rol_ip-p11" xsi:type="Relationship" source="id-v-v02-n-rol_ip-11" target="id-v-v02-n-p11">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-rol_aob-p10-ass" relationshipRef="id-r-ass-rol_aob-p10" xsi:type="Relationship" source="id-v-v02-n-rol_aob" target="id-v-v02-n-p10">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="685" y="523" />
+          <bendpoint x="685" y="362" />
+        </connection>
+        <connection identifier="id-v-v02-c-as_tick-p01-ser" relationshipRef="id-r-ser-as_tick-p01" xsi:type="Relationship" source="id-v-v02-n-as_tick" target="id-v-v02-n-p01">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v02-c-as_repo-p10-ser" relationshipRef="id-r-ser-as_repo-p10" xsi:type="Relationship" source="id-v-v02-n-as_repo" target="id-v-v02-n-p10">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+      </view>
+      <view identifier="id-v-v03" xsi:type="Diagram" viewpoint="Business Process Cooperation">
+        <name xml:lang="es">03 Proceso TO-BE – con Process One</name>
+        <documentation xml:lang="es">Process One interviene en los pasos 4, 5, 6, 7 y 10 mediante servicios de aplicación; las decisiones siguen en las personas.</documentation>
+        <node identifier="id-v-v03-n-ev_ini" elementRef="id-ev_ini" xsi:type="Element" x="30" y="125" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p01" elementRef="id-p01" xsi:type="Element" x="195" y="118" w="141" h="68">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p02" elementRef="id-p02" xsi:type="Element" x="360" y="125" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p03" elementRef="id-p03" xsi:type="Element" x="525" y="125" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p04" elementRef="id-p04" xsi:type="Element" x="690" y="118" w="141" h="68">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p05" elementRef="id-p05" xsi:type="Element" x="855" y="125" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p06" elementRef="id-p06" xsi:type="Element" x="1020" y="118" w="141" h="68">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p07" elementRef="id-p07" xsi:type="Element" x="1020" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p08" elementRef="id-p08" xsi:type="Element" x="855" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p09" elementRef="id-p09" xsi:type="Element" x="690" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p10" elementRef="id-p10" xsi:type="Element" x="525" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-p11" elementRef="id-p11" xsi:type="Element" x="360" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-ev_fin" elementRef="id-ev_fin" xsi:type="Element" x="195" y="315" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_sol" elementRef="id-rol_sol" xsi:type="Element" x="195" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_ip-2" elementRef="id-rol_ip" xsi:type="Element" x="360" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_jip" elementRef="id-rol_jip" xsi:type="Element" x="525" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_ip-4" elementRef="id-rol_ip" xsi:type="Element" x="690" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_ip-5" elementRef="id-rol_ip" xsi:type="Element" x="855" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_ip-6" elementRef="id-rol_ip" xsi:type="Element" x="1020" y="30" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_area" elementRef="id-rol_area" xsi:type="Element" x="1020" y="410" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_ger" elementRef="id-rol_ger" xsi:type="Element" x="855" y="410" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_gcias" elementRef="id-rol_gcias" xsi:type="Element" x="690" y="404" w="141" h="68">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_aob" elementRef="id-rol_aob" xsi:type="Element" x="525" y="496" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_ip-10" elementRef="id-rol_ip" xsi:type="Element" x="525" y="410" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-rol_ip-11" elementRef="id-rol_ip" xsi:type="Element" x="360" y="410" w="141" h="55">
+          <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-as_ident" elementRef="id-as_ident" xsi:type="Element" x="690" y="220" w="141" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-as_consulta" elementRef="id-as_consulta" xsi:type="Element" x="855" y="220" w="141" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-as_analisis" elementRef="id-as_analisis" xsi:type="Element" x="1202" y="125" w="141" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-as_hitl" elementRef="id-as_hitl" xsi:type="Element" x="1202" y="253" w="141" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-as_carga" elementRef="id-as_carga" xsi:type="Element" x="525" y="220" w="141" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v03-n-as_tick" elementRef="id-as_tick" xsi:type="Element" x="46" y="239" w="141" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <connection identifier="id-v-v03-c-ev_ini-p01-tri" relationshipRef="id-r-tri-ev_ini-p01" xsi:type="Relationship" source="id-v-v03-n-ev_ini" target="id-v-v03-n-p01">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p01-p02-tri" relationshipRef="id-r-tri-p01-p02" xsi:type="Relationship" source="id-v-v03-n-p01" target="id-v-v03-n-p02">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p02-p03-tri" relationshipRef="id-r-tri-p02-p03" xsi:type="Relationship" source="id-v-v03-n-p02" target="id-v-v03-n-p03">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p03-p04-tri" relationshipRef="id-r-tri-p03-p04" xsi:type="Relationship" source="id-v-v03-n-p03" target="id-v-v03-n-p04">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p04-p05-tri" relationshipRef="id-r-tri-p04-p05" xsi:type="Relationship" source="id-v-v03-n-p04" target="id-v-v03-n-p05">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p05-p06-tri" relationshipRef="id-r-tri-p05-p06" xsi:type="Relationship" source="id-v-v03-n-p05" target="id-v-v03-n-p06">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p06-p07-tri" relationshipRef="id-r-tri-p06-p07" xsi:type="Relationship" source="id-v-v03-n-p06" target="id-v-v03-n-p07">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p07-p08-tri" relationshipRef="id-r-tri-p07-p08" xsi:type="Relationship" source="id-v-v03-n-p07" target="id-v-v03-n-p08">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p08-p09-tri" relationshipRef="id-r-tri-p08-p09" xsi:type="Relationship" source="id-v-v03-n-p08" target="id-v-v03-n-p09">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p09-p10-tri" relationshipRef="id-r-tri-p09-p10" xsi:type="Relationship" source="id-v-v03-n-p09" target="id-v-v03-n-p10">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p10-p11-tri" relationshipRef="id-r-tri-p10-p11" xsi:type="Relationship" source="id-v-v03-n-p10" target="id-v-v03-n-p11">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-p11-ev_fin-tri" relationshipRef="id-r-tri-p11-ev_fin" xsi:type="Relationship" source="id-v-v03-n-p11" target="id-v-v03-n-ev_fin">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_sol-p01-ass" relationshipRef="id-r-ass-rol_sol-p01" xsi:type="Relationship" source="id-v-v03-n-rol_sol" target="id-v-v03-n-p01">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_ip-2-p02-ass" relationshipRef="id-r-ass-rol_ip-p02" xsi:type="Relationship" source="id-v-v03-n-rol_ip-2" target="id-v-v03-n-p02">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_jip-p03-ass" relationshipRef="id-r-ass-rol_jip-p03" xsi:type="Relationship" source="id-v-v03-n-rol_jip" target="id-v-v03-n-p03">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_ip-4-p04-ass" relationshipRef="id-r-ass-rol_ip-p04" xsi:type="Relationship" source="id-v-v03-n-rol_ip-4" target="id-v-v03-n-p04">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_ip-5-p05-ass" relationshipRef="id-r-ass-rol_ip-p05" xsi:type="Relationship" source="id-v-v03-n-rol_ip-5" target="id-v-v03-n-p05">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_ip-6-p06-ass" relationshipRef="id-r-ass-rol_ip-p06" xsi:type="Relationship" source="id-v-v03-n-rol_ip-6" target="id-v-v03-n-p06">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_area-p07-ass" relationshipRef="id-r-ass-rol_area-p07" xsi:type="Relationship" source="id-v-v03-n-rol_area" target="id-v-v03-n-p07">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_ger-p08-ass" relationshipRef="id-r-ass-rol_ger-p08" xsi:type="Relationship" source="id-v-v03-n-rol_ger" target="id-v-v03-n-p08">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_gcias-p09-ass" relationshipRef="id-r-ass-rol_gcias-p09" xsi:type="Relationship" source="id-v-v03-n-rol_gcias" target="id-v-v03-n-p09">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_ip-10-p10-ass" relationshipRef="id-r-ass-rol_ip-p10" xsi:type="Relationship" source="id-v-v03-n-rol_ip-10" target="id-v-v03-n-p10">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_ip-11-p11-ass" relationshipRef="id-r-ass-rol_ip-p11" xsi:type="Relationship" source="id-v-v03-n-rol_ip-11" target="id-v-v03-n-p11">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-rol_aob-p10-ass" relationshipRef="id-r-ass-rol_aob-p10" xsi:type="Relationship" source="id-v-v03-n-rol_aob" target="id-v-v03-n-p10">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="685" y="523" />
+          <bendpoint x="685" y="362" />
+        </connection>
+        <connection identifier="id-v-v03-c-as_ident-p04-ser" relationshipRef="id-r-ser-as_ident-p04" xsi:type="Relationship" source="id-v-v03-n-as_ident" target="id-v-v03-n-p04">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-as_consulta-p05-ser" relationshipRef="id-r-ser-as_consulta-p05" xsi:type="Relationship" source="id-v-v03-n-as_consulta" target="id-v-v03-n-p05">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-as_analisis-p06-ser" relationshipRef="id-r-ser-as_analisis-p06" xsi:type="Relationship" source="id-v-v03-n-as_analisis" target="id-v-v03-n-p06">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-as_hitl-p06-ser" relationshipRef="id-r-ser-as_hitl-p06" xsi:type="Relationship" source="id-v-v03-n-as_hitl" target="id-v-v03-n-p06">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-as_hitl-p07-ser" relationshipRef="id-r-ser-as_hitl-p07" xsi:type="Relationship" source="id-v-v03-n-as_hitl" target="id-v-v03-n-p07">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-as_carga-p10-ser" relationshipRef="id-r-ser-as_carga-p10" xsi:type="Relationship" source="id-v-v03-n-as_carga" target="id-v-v03-n-p10">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v03-c-as_tick-p01-ser" relationshipRef="id-r-ser-as_tick-p01" xsi:type="Relationship" source="id-v-v03-n-as_tick" target="id-v-v03-n-p01">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+      </view>
+      <view identifier="id-v-v04" xsi:type="Diagram" viewpoint="Layered">
+        <name xml:lang="es">04 Arquitectura AS-IS por capas</name>
+        <documentation xml:lang="es">Situación actual: el proceso se apoya en SGP, OnBase y correo; no existe análisis documental asistido.</documentation>
+        <node identifier="id-v-v04-n-grp_neg" elementRef="id-grp_neg" xsi:type="Element" x="30" y="30" w="476" h="199">
+          <style><fillColor r="250" g="250" b="250" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v04-n-rol_ip" elementRef="id-rol_ip" xsi:type="Element" x="50" y="60" w="150" h="55">
+            <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v04-n-rol_jip" elementRef="id-rol_jip" xsi:type="Element" x="44" y="160" w="163" h="55">
+            <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v04-n-bp_act" elementRef="id-bp_act" xsi:type="Element" x="329" y="110" w="163" h="55">
+            <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v04-n-grp_si" elementRef="id-grp_si" xsi:type="Element" x="132" y="280" w="558" h="199">
+          <style><fillColor r="250" g="250" b="250" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v04-n-as_tick" elementRef="id-as_tick" xsi:type="Element" x="146" y="310" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v04-n-as_repo" elementRef="id-as_repo" xsi:type="Element" x="526" y="310" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v04-n-ac_sgp" elementRef="id-ac_sgp" xsi:type="Element" x="146" y="410" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v04-n-ac_mail" elementRef="id-ac_mail" xsi:type="Element" x="336" y="410" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v04-n-ac_onb" elementRef="id-ac_onb" xsi:type="Element" x="526" y="410" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v04-n-grp_tec" elementRef="id-grp_tec" xsi:type="Element" x="132" y="530" w="558" h="99">
+          <style><fillColor r="250" g="250" b="250" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v04-n-n_sgp" elementRef="id-n_sgp" xsi:type="Element" x="146" y="560" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v04-n-n_obs" elementRef="id-n_obs" xsi:type="Element" x="526" y="560" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <connection identifier="id-v-v04-c-rol_ip-bp_act-ass" relationshipRef="id-r-ass-rol_ip-bp_act" xsi:type="Relationship" source="id-v-v04-n-rol_ip" target="id-v-v04-n-bp_act">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v04-c-rol_jip-bp_act-ass" relationshipRef="id-r-ass-rol_jip-bp_act" xsi:type="Relationship" source="id-v-v04-n-rol_jip" target="id-v-v04-n-bp_act">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v04-c-as_tick-bp_act-ser" relationshipRef="id-r-ser-as_tick-bp_act" xsi:type="Relationship" source="id-v-v04-n-as_tick" target="id-v-v04-n-bp_act">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v04-c-as_repo-bp_act-ser" relationshipRef="id-r-ser-as_repo-bp_act" xsi:type="Relationship" source="id-v-v04-n-as_repo" target="id-v-v04-n-bp_act">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v04-c-ac_mail-bp_act-ser" relationshipRef="id-r-ser-ac_mail-bp_act" xsi:type="Relationship" source="id-v-v04-n-ac_mail" target="id-v-v04-n-bp_act">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v04-c-ac_sgp-as_tick-rea" relationshipRef="id-r-rea-ac_sgp-as_tick" xsi:type="Relationship" source="id-v-v04-n-ac_sgp" target="id-v-v04-n-as_tick">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v04-c-ac_onb-as_repo-rea" relationshipRef="id-r-rea-ac_onb-as_repo" xsi:type="Relationship" source="id-v-v04-n-ac_onb" target="id-v-v04-n-as_repo">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v04-c-n_sgp-ac_sgp-ser" relationshipRef="id-r-ser-n_sgp-ac_sgp" xsi:type="Relationship" source="id-v-v04-n-n_sgp" target="id-v-v04-n-ac_sgp">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v04-c-n_obs-ac_onb-ser" relationshipRef="id-r-ser-n_obs-ac_onb" xsi:type="Relationship" source="id-v-v04-n-n_obs" target="id-v-v04-n-ac_onb">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+      </view>
+      <view identifier="id-v-v05" xsi:type="Diagram" viewpoint="Layered">
+        <name xml:lang="es">05 Arquitectura TO-BE por capas</name>
+        <documentation xml:lang="es">Negocio, sistemas de información y tecnología de Process One con los componentes definitivos.</documentation>
+        <node identifier="id-v-v05-n-grp_neg" elementRef="id-grp_neg" xsi:type="Element" x="30" y="30" w="1027" h="112">
+          <style><fillColor r="250" g="250" b="250" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v05-n-p04" elementRef="id-p04" xsi:type="Element" x="44" y="60" w="129" h="68">
+            <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-p05" elementRef="id-p05" xsi:type="Element" x="194" y="66" w="129" h="55">
+            <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-p06" elementRef="id-p06" xsi:type="Element" x="374" y="60" w="129" h="68">
+            <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-p07" elementRef="id-p07" xsi:type="Element" x="554" y="66" w="129" h="55">
+            <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-p10" elementRef="id-p10" xsi:type="Element" x="914" y="66" w="129" h="55">
+            <style><fillColor r="255" g="255" b="181" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v05-n-grp_si" elementRef="id-grp_si" xsi:type="Element" x="30" y="160" w="1387" h="330">
+          <style><fillColor r="250" g="250" b="250" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v05-n-as_ident" elementRef="id-as_ident" xsi:type="Element" x="44" y="190" w="129" h="68">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-as_consulta" elementRef="id-as_consulta" xsi:type="Element" x="194" y="196" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-as_analisis" elementRef="id-as_analisis" xsi:type="Element" x="374" y="196" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-as_hitl" elementRef="id-as_hitl" xsi:type="Element" x="554" y="190" w="129" h="68">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-as_rag" elementRef="id-as_rag" xsi:type="Element" x="734" y="196" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-as_carga" elementRef="id-as_carga" xsi:type="Element" x="914" y="196" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-ac_cbot" elementRef="id-ac_cbot" xsi:type="Element" x="119" y="316" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-ac_mas" elementRef="id-ac_mas" xsi:type="Element" x="374" y="316" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-ac_back" elementRef="id-ac_back" xsi:type="Element" x="554" y="316" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-ac_srch" elementRef="id-ac_srch" xsi:type="Element" x="734" y="316" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-ac_ing" elementRef="id-ac_ing" xsi:type="Element" x="914" y="316" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-ac_web" elementRef="id-ac_web" xsi:type="Element" x="554" y="422" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-ai_tmf" elementRef="id-ai_tmf" xsi:type="Element" x="1094" y="422" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-ac_gw" elementRef="id-ac_gw" xsi:type="Element" x="1094" y="316" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-ac_onb" elementRef="id-ac_onb" xsi:type="Element" x="1274" y="316" w="129" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v05-n-grp_tec" elementRef="id-grp_tec" xsi:type="Element" x="105" y="510" w="1312" h="206">
+          <style><fillColor r="250" g="250" b="250" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v05-n-n_cps" elementRef="id-n_cps" xsi:type="Element" x="119" y="546" w="129" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-n_fdy" elementRef="id-n_fdy" xsi:type="Element" x="374" y="546" w="129" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-n_aca" elementRef="id-n_aca" xsi:type="Element" x="734" y="540" w="129" h="68">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-n_blob" elementRef="id-n_blob" xsi:type="Element" x="914" y="646" w="129" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-n_srch" elementRef="id-n_srch" xsi:type="Element" x="734" y="646" w="129" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-p_vpn" elementRef="id-p_vpn" xsi:type="Element" x="1094" y="546" w="129" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-n_gws" elementRef="id-n_gws" xsi:type="Element" x="1094" y="646" w="129" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v05-n-n_obs" elementRef="id-n_obs" xsi:type="Element" x="1274" y="546" w="129" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <connection identifier="id-v-v05-c-as_ident-p04-ser" relationshipRef="id-r-ser-as_ident-p04" xsi:type="Relationship" source="id-v-v05-n-as_ident" target="id-v-v05-n-p04">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-as_consulta-p05-ser" relationshipRef="id-r-ser-as_consulta-p05" xsi:type="Relationship" source="id-v-v05-n-as_consulta" target="id-v-v05-n-p05">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-as_analisis-p06-ser" relationshipRef="id-r-ser-as_analisis-p06" xsi:type="Relationship" source="id-v-v05-n-as_analisis" target="id-v-v05-n-p06">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-as_hitl-p07-ser" relationshipRef="id-r-ser-as_hitl-p07" xsi:type="Relationship" source="id-v-v05-n-as_hitl" target="id-v-v05-n-p07">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-as_carga-p10-ser" relationshipRef="id-r-ser-as_carga-p10" xsi:type="Relationship" source="id-v-v05-n-as_carga" target="id-v-v05-n-p10">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_cbot-as_ident-rea" relationshipRef="id-r-rea-ac_cbot-as_ident" xsi:type="Relationship" source="id-v-v05-n-ac_cbot" target="id-v-v05-n-as_ident">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_cbot-as_consulta-rea" relationshipRef="id-r-rea-ac_cbot-as_consulta" xsi:type="Relationship" source="id-v-v05-n-ac_cbot" target="id-v-v05-n-as_consulta">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_mas-as_analisis-rea" relationshipRef="id-r-rea-ac_mas-as_analisis" xsi:type="Relationship" source="id-v-v05-n-ac_mas" target="id-v-v05-n-as_analisis">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_back-as_hitl-rea" relationshipRef="id-r-rea-ac_back-as_hitl" xsi:type="Relationship" source="id-v-v05-n-ac_back" target="id-v-v05-n-as_hitl">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_srch-as_rag-rea" relationshipRef="id-r-rea-ac_srch-as_rag" xsi:type="Relationship" source="id-v-v05-n-ac_srch" target="id-v-v05-n-as_rag">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_ing-as_carga-rea" relationshipRef="id-r-rea-ac_ing-as_carga" xsi:type="Relationship" source="id-v-v05-n-ac_ing" target="id-v-v05-n-as_carga">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_mas-ac_back-flo-Hallazgos-y-borrador" relationshipRef="id-r-flo-ac_mas-ac_back-hallazgos-y-borrador" xsi:type="Relationship" source="id-v-v05-n-ac_mas" target="id-v-v05-n-ac_back">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_srch-ac_mas-flo-Fragmentos-con-cita" relationshipRef="id-r-flo-ac_srch-ac_mas-fragmentos-con-cita" xsi:type="Relationship" source="id-v-v05-n-ac_srch" target="id-v-v05-n-ac_mas">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="776" y="389" />
+          <bendpoint x="461" y="389" />
+        </connection>
+        <connection identifier="id-v-v05-c-ac_back-ac_ing-flo-Documento-aprobado" relationshipRef="id-r-flo-ac_back-ac_ing-documento-aprobado" xsi:type="Relationship" source="id-v-v05-n-ac_back" target="id-v-v05-n-ac_ing">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="618" y="299" />
+          <bendpoint x="978" y="299" />
+        </connection>
+        <connection identifier="id-v-v05-c-ac_ing-ac_srch-flo-Binario---metadatos--v-a-Blob-" relationshipRef="id-r-flo-ac_ing-ac_srch-binario-metadatos-v" xsi:type="Relationship" source="id-v-v05-n-ac_ing" target="id-v-v05-n-ac_srch">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_web-ac_back-flo-Solicitud--decisiones-HITL" relationshipRef="id-r-flo-ac_web-ac_back-solicitud-decisiones" xsi:type="Relationship" source="id-v-v05-n-ac_web" target="id-v-v05-n-ac_back">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ai_tmf-ac_ing-ser" relationshipRef="id-r-ser-ai_tmf-ac_ing" xsi:type="Relationship" source="id-v-v05-n-ai_tmf" target="id-v-v05-n-ac_ing">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="978" y="449" />
+        </connection>
+        <connection identifier="id-v-v05-c-ac_gw-ai_tmf-com" relationshipRef="id-r-com-ac_gw-ai_tmf" xsi:type="Relationship" source="id-v-v05-n-ac_gw" target="id-v-v05-n-ai_tmf">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_onb-ac_gw-flo-Documento--SOAP-" relationshipRef="id-r-flo-ac_onb-ac_gw-documento-soap" xsi:type="Relationship" source="id-v-v05-n-ac_onb" target="id-v-v05-n-ac_gw">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-ac_mas-ac_cbot-flo-Respuesta-con-cita--AG-16-" relationshipRef="id-r-flo-ac_mas-ac_cbot-respuesta-con-cita-a" xsi:type="Relationship" source="id-v-v05-n-ac_mas" target="id-v-v05-n-ac_cbot">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-n_cps-ac_cbot-ser" relationshipRef="id-r-ser-n_cps-ac_cbot" xsi:type="Relationship" source="id-v-v05-n-n_cps" target="id-v-v05-n-ac_cbot">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-n_fdy-ac_mas-ser" relationshipRef="id-r-ser-n_fdy-ac_mas" xsi:type="Relationship" source="id-v-v05-n-n_fdy" target="id-v-v05-n-ac_mas">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-n_aca-ac_back-ser" relationshipRef="id-r-ser-n_aca-ac_back" xsi:type="Relationship" source="id-v-v05-n-n_aca" target="id-v-v05-n-ac_back">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="708" y="574" />
+          <bendpoint x="708" y="344" />
+        </connection>
+        <connection identifier="id-v-v05-c-n_srch-ac_srch-ser" relationshipRef="id-r-ser-n_srch-ac_srch" xsi:type="Relationship" source="id-v-v05-n-n_srch" target="id-v-v05-n-ac_srch">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="888" y="674" />
+          <bendpoint x="888" y="409" />
+          <bendpoint x="821" y="409" />
+        </connection>
+        <connection identifier="id-v-v05-c-n_blob-ac_ing-ser" relationshipRef="id-r-ser-n_blob-ac_ing" xsi:type="Relationship" source="id-v-v05-n-n_blob" target="id-v-v05-n-ac_ing">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="1038" y="674" />
+          <bendpoint x="1038" y="344" />
+        </connection>
+        <connection identifier="id-v-v05-c-n_gws-ac_gw-ser" relationshipRef="id-r-ser-n_gws-ac_gw" xsi:type="Relationship" source="id-v-v05-n-n_gws" target="id-v-v05-n-ac_gw">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="1226" y="674" />
+          <bendpoint x="1226" y="344" />
+        </connection>
+        <connection identifier="id-v-v05-c-n_obs-ac_onb-ser" relationshipRef="id-r-ser-n_obs-ac_onb" xsi:type="Relationship" source="id-v-v05-n-n_obs" target="id-v-v05-n-ac_onb">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v05-c-n_aca-ac_ing-ser" relationshipRef="id-r-ser-n_aca-ac_ing" xsi:type="Relationship" source="id-v-v05-n-n_aca" target="id-v-v05-n-ac_ing">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+      </view>
+      <view identifier="id-v-v06" xsi:type="Diagram" viewpoint="Application Cooperation">
+        <name xml:lang="es">06 Intercambio de información</name>
+        <documentation xml:lang="es">Flujos de información entre aplicaciones (tabla 5.2) y objetos de datos que cada una accede.</documentation>
+        <node identifier="id-v-v06-n-ac_onb" elementRef="id-ac_onb" xsi:type="Element" x="30" y="146" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-ac_gw" elementRef="id-ac_gw" xsi:type="Element" x="258" y="146" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-ac_ing" elementRef="id-ac_ing" xsi:type="Element" x="485" y="146" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-ac_srch" elementRef="id-ac_srch" xsi:type="Element" x="712" y="146" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-ac_back" elementRef="id-ac_back" xsi:type="Element" x="485" y="303" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-ac_mas" elementRef="id-ac_mas" xsi:type="Element" x="712" y="303" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-ac_web" elementRef="id-ac_web" xsi:type="Element" x="258" y="303" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-ac_cbot" elementRef="id-ac_cbot" xsi:type="Element" x="712" y="440" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-do_doc" elementRef="id-do_doc" xsi:type="Element" x="30" y="303" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-do_ver" elementRef="id-do_ver" xsi:type="Element" x="485" y="30" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-do_frag" elementRef="id-do_frag" xsi:type="Element" x="712" y="30" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-do_hal" elementRef="id-do_hal" xsi:type="Element" x="922" y="303" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-do_bor" elementRef="id-do_bor" xsi:type="Element" x="485" y="440" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v06-n-do_car" elementRef="id-do_car" xsi:type="Element" x="258" y="440" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <connection identifier="id-v-v06-c-ac_onb-ac_gw-flo-Documento--SOAP-" relationshipRef="id-r-flo-ac_onb-ac_gw-documento-soap" xsi:type="Relationship" source="id-v-v06-n-ac_onb" target="id-v-v06-n-ac_gw">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="219" y="160" />
+        </connection>
+        <connection identifier="id-v-v06-c-ac_gw-ac_onb-flo-Revisi-n-no-vigente--SOAP-" relationshipRef="id-r-flo-ac_gw-ac_onb-revisi-n-no-vigente" xsi:type="Relationship" source="id-v-v06-n-ac_gw" target="id-v-v06-n-ac_onb">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="219" y="186" />
+        </connection>
+        <connection identifier="id-v-v06-c-ac_gw-ac_ing-flo-Document--TMF667-" relationshipRef="id-r-flo-ac_gw-ac_ing-document-tmf667" xsi:type="Relationship" source="id-v-v06-n-ac_gw" target="id-v-v06-n-ac_ing">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="446" y="160" />
+        </connection>
+        <connection identifier="id-v-v06-c-ac_ing-ac_gw-flo-Document-aprobado--POST-" relationshipRef="id-r-flo-ac_ing-ac_gw-document-aprobado-po" xsi:type="Relationship" source="id-v-v06-n-ac_ing" target="id-v-v06-n-ac_gw">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="446" y="186" />
+        </connection>
+        <connection identifier="id-v-v06-c-ac_ing-ac_srch-flo-Binario---metadatos--v-a-Blob-" relationshipRef="id-r-flo-ac_ing-ac_srch-binario-metadatos-v" xsi:type="Relationship" source="id-v-v06-n-ac_ing" target="id-v-v06-n-ac_srch">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_srch-ac_mas-flo-Fragmentos-con-cita" relationshipRef="id-r-flo-ac_srch-ac_mas-fragmentos-con-cita" xsi:type="Relationship" source="id-v-v06-n-ac_srch" target="id-v-v06-n-ac_mas">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_mas-ac_back-flo-Hallazgos-y-borrador" relationshipRef="id-r-flo-ac_mas-ac_back-hallazgos-y-borrador" xsi:type="Relationship" source="id-v-v06-n-ac_mas" target="id-v-v06-n-ac_back">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_back-ac_ing-flo-Documento-aprobado" relationshipRef="id-r-flo-ac_back-ac_ing-documento-aprobado" xsi:type="Relationship" source="id-v-v06-n-ac_back" target="id-v-v06-n-ac_ing">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_web-ac_back-flo-Solicitud--decisiones-HITL" relationshipRef="id-r-flo-ac_web-ac_back-solicitud-decisiones" xsi:type="Relationship" source="id-v-v06-n-ac_web" target="id-v-v06-n-ac_back">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_mas-ac_cbot-flo-Respuesta-con-cita--AG-16-" relationshipRef="id-r-flo-ac_mas-ac_cbot-respuesta-con-cita-a" xsi:type="Relationship" source="id-v-v06-n-ac_mas" target="id-v-v06-n-ac_cbot">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_onb-do_doc-acc" relationshipRef="id-r-acc-ac_onb-do_doc" xsi:type="Relationship" source="id-v-v06-n-ac_onb" target="id-v-v06-n-do_doc">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_ing-do_ver-acc" relationshipRef="id-r-acc-ac_ing-do_ver" xsi:type="Relationship" source="id-v-v06-n-ac_ing" target="id-v-v06-n-do_ver">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_srch-do_frag-acc" relationshipRef="id-r-acc-ac_srch-do_frag" xsi:type="Relationship" source="id-v-v06-n-ac_srch" target="id-v-v06-n-do_frag">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_mas-do_hal-acc" relationshipRef="id-r-acc-ac_mas-do_hal" xsi:type="Relationship" source="id-v-v06-n-ac_mas" target="id-v-v06-n-do_hal">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_back-do_bor-acc" relationshipRef="id-r-acc-ac_back-do_bor" xsi:type="Relationship" source="id-v-v06-n-ac_back" target="id-v-v06-n-do_bor">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v06-c-ac_ing-do_car-acc" relationshipRef="id-r-acc-ac_ing-do_car" xsi:type="Relationship" source="id-v-v06-n-ac_ing" target="id-v-v06-n-do_car">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+      </view>
+      <view identifier="id-v-v07" xsi:type="Diagram" viewpoint="Application Cooperation">
+        <name xml:lang="es">07 Colaboraciones entre aplicaciones</name>
+        <documentation xml:lang="es">Colaboraciones de aplicación (tabla 4.6): cada una agrega los componentes que ejecutan conjuntamente la acción.</documentation>
+        <node identifier="id-v-v07-n-col_ing" elementRef="id-col_ing" xsi:type="Element" x="30" y="30" w="528" h="99">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v07-n-ac_gw-1" elementRef="id-ac_gw" xsi:type="Element" x="44" y="60" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_ing-1" elementRef="id-ac_ing" xsi:type="Element" x="219" y="60" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_srch-1" elementRef="id-ac_srch" xsi:type="Element" x="394" y="60" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v07-n-col_ana" elementRef="id-col_ana" xsi:type="Element" x="642" y="30" w="353" h="194">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v07-n-ac_web-2" elementRef="id-ac_web" xsi:type="Element" x="656" y="60" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_back-2" elementRef="id-ac_back" xsi:type="Element" x="832" y="60" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_mas-2" elementRef="id-ac_mas" xsi:type="Element" x="656" y="155" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_srch-2" elementRef="id-ac_srch" xsi:type="Element" x="832" y="155" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v07-n-col_con" elementRef="id-col_con" xsi:type="Element" x="30" y="239" w="528" h="99">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v07-n-ac_cbot-3" elementRef="id-ac_cbot" xsi:type="Element" x="44" y="269" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_mas-3" elementRef="id-ac_mas" xsi:type="Element" x="219" y="269" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_srch-3" elementRef="id-ac_srch" xsi:type="Element" x="394" y="269" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v07-n-col_car" elementRef="id-col_car" xsi:type="Element" x="642" y="239" w="528" h="194">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v07-n-ac_web-4" elementRef="id-ac_web" xsi:type="Element" x="656" y="269" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_back-4" elementRef="id-ac_back" xsi:type="Element" x="832" y="269" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_ing-4" elementRef="id-ac_ing" xsi:type="Element" x="656" y="364" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_gw-4" elementRef="id-ac_gw" xsi:type="Element" x="832" y="364" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v07-n-ac_onb-4" elementRef="id-ac_onb" xsi:type="Element" x="1006" y="364" w="150" h="55">
+            <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+      </view>
+      <view identifier="id-v-v08" xsi:type="Diagram" viewpoint="Information Structure">
+        <name xml:lang="es">08 Modelo de datos</name>
+        <documentation xml:lang="es">Entidades de la tabla 5.3: dominio documental (TMF667) y dominio operativo de Process One.</documentation>
+        <node identifier="id-v-v08-n-do_rel" elementRef="id-do_rel" xsi:type="Element" x="30" y="58" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_doc" elementRef="id-do_doc" xsi:type="Element" x="215" y="58" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_att" elementRef="id-do_att" xsi:type="Element" x="400" y="58" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_ver" elementRef="id-do_ver" xsi:type="Element" x="215" y="178" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_frag" elementRef="id-do_frag" xsi:type="Element" x="400" y="178" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_sol" elementRef="id-do_sol" xsi:type="Element" x="640" y="58" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_eje" elementRef="id-do_eje" xsi:type="Element" x="826" y="58" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_hal" elementRef="id-do_hal" xsi:type="Element" x="826" y="178" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_bor" elementRef="id-do_bor" xsi:type="Element" x="640" y="178" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_apr" elementRef="id-do_apr" xsi:type="Element" x="640" y="298" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v08-n-do_car" elementRef="id-do_car" xsi:type="Element" x="215" y="298" w="150" h="55">
+          <style><fillColor r="181" g="255" b="255" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <connection identifier="id-v-v08-c-do_rel-do_doc-ass-relaciona" relationshipRef="id-r-ass-do_rel-do_doc-relaciona" xsi:type="Relationship" source="id-v-v08-n-do_rel" target="id-v-v08-n-do_doc">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v08-c-do_doc-do_att-agg" relationshipRef="id-r-agg-do_doc-do_att" xsi:type="Relationship" source="id-v-v08-n-do_doc" target="id-v-v08-n-do_att">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v08-c-do_doc-do_ver-ass-se-ingiere-como" relationshipRef="id-r-ass-do_doc-do_ver-se-ingiere-como" xsi:type="Relationship" source="id-v-v08-n-do_doc" target="id-v-v08-n-do_ver">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v08-c-do_ver-do_frag-agg" relationshipRef="id-r-agg-do_ver-do_frag" xsi:type="Relationship" source="id-v-v08-n-do_ver" target="id-v-v08-n-do_frag">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v08-c-do_sol-do_doc-ass-impacta" relationshipRef="id-r-ass-do_sol-do_doc-impacta" xsi:type="Relationship" source="id-v-v08-n-do_sol" target="id-v-v08-n-do_doc">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="716" y="30" />
+          <bendpoint x="327" y="30" />
+        </connection>
+        <connection identifier="id-v-v08-c-do_sol-do_eje-agg" relationshipRef="id-r-agg-do_sol-do_eje" xsi:type="Relationship" source="id-v-v08-n-do_sol" target="id-v-v08-n-do_eje">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v08-c-do_eje-do_hal-agg" relationshipRef="id-r-agg-do_eje-do_hal" xsi:type="Relationship" source="id-v-v08-n-do_eje" target="id-v-v08-n-do_hal">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v08-c-do_sol-do_bor-agg" relationshipRef="id-r-agg-do_sol-do_bor" xsi:type="Relationship" source="id-v-v08-n-do_sol" target="id-v-v08-n-do_bor">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v08-c-do_bor-do_hal-ass-incorpora" relationshipRef="id-r-ass-do_bor-do_hal-incorpora" xsi:type="Relationship" source="id-v-v08-n-do_bor" target="id-v-v08-n-do_hal">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v08-c-do_bor-do_apr-agg" relationshipRef="id-r-agg-do_bor-do_apr" xsi:type="Relationship" source="id-v-v08-n-do_bor" target="id-v-v08-n-do_apr">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v08-c-do_bor-do_car-ass-se-carga-en" relationshipRef="id-r-ass-do_bor-do_car-se-carga-en" xsi:type="Relationship" source="id-v-v08-n-do_bor" target="id-v-v08-n-do_car">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="716" y="265" />
+          <bendpoint x="401" y="265" />
+          <bendpoint x="401" y="325" />
+        </connection>
+        <connection identifier="id-v-v08-c-do_car-do_doc-ass-crea-revisi-n-de" relationshipRef="id-r-ass-do_car-do_doc-crea-revisi-n-de" xsi:type="Relationship" source="id-v-v08-n-do_car" target="id-v-v08-n-do_doc">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="188" y="325" />
+          <bendpoint x="188" y="140" />
+          <bendpoint x="290" y="140" />
+        </connection>
+      </view>
+      <view identifier="id-v-v09" xsi:type="Diagram" viewpoint="Technology">
+        <name xml:lang="es">09 Despliegue</name>
+        <documentation xml:lang="es">Nodos, redes y ubicación de los componentes (6.1). Los datos de red se completan en sitio.</documentation>
+        <node identifier="id-v-v09-n-loc_dc" elementRef="id-loc_dc" xsi:type="Element" x="37" y="30" w="353" h="289">
+          <style><fillColor r="251" g="184" b="117" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v09-n-n_obs" elementRef="id-n_obs" xsi:type="Element" x="51" y="60" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_gws" elementRef="id-n_gws" xsi:type="Element" x="226" y="60" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_sgp" elementRef="id-n_sgp" xsi:type="Element" x="51" y="155" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-d_fw" elementRef="id-d_fw" xsi:type="Element" x="226" y="155" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-cn_lan" elementRef="id-cn_lan" xsi:type="Element" x="139" y="250" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v09-n-p_vpn" elementRef="id-p_vpn" xsi:type="Element" x="471" y="155" w="150" h="55">
+          <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+        </node>
+        <node identifier="id-v-v09-n-loc_az" elementRef="id-loc_az" xsi:type="Element" x="702" y="30" w="528" h="296">
+          <style><fillColor r="251" g="184" b="117" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v09-n-n_vgw" elementRef="id-n_vgw" xsi:type="Element" x="716" y="155" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_aca" elementRef="id-n_aca" xsi:type="Element" x="891" y="60" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_fdy" elementRef="id-n_fdy" xsi:type="Element" x="1066" y="60" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-cn_vnet" elementRef="id-cn_vnet" xsi:type="Element" x="891" y="155" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_blob" elementRef="id-n_blob" xsi:type="Element" x="891" y="250" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_srch" elementRef="id-n_srch" xsi:type="Element" x="1066" y="250" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_kv" elementRef="id-n_kv" xsi:type="Element" x="1066" y="155" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_db" elementRef="id-n_db" xsi:type="Element" x="716" y="244" w="150" h="68">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_mon" elementRef="id-n_mon" xsi:type="Element" x="716" y="60" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <node identifier="id-v-v09-n-loc_m365" elementRef="id-loc_m365" xsi:type="Element" x="877" y="344" w="353" h="99">
+          <style><fillColor r="251" g="184" b="117" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          <node identifier="id-v-v09-n-n_entra" elementRef="id-n_entra" xsi:type="Element" x="891" y="374" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+          <node identifier="id-v-v09-n-n_cps" elementRef="id-n_cps" xsi:type="Element" x="1066" y="374" w="150" h="55">
+            <style><fillColor r="201" g="231" b="183" /><lineColor r="92" g="92" b="92" /><font name="Segoe UI" size="9"><color r="0" g="0" b="0" /></font></style>
+          </node>
+        </node>
+        <connection identifier="id-v-v09-c-n_obs-cn_lan-ass" relationshipRef="id-r-ass-n_obs-cn_lan" xsi:type="Relationship" source="id-v-v09-n-n_obs" target="id-v-v09-n-cn_lan">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="30" y="88" />
+          <bendpoint x="30" y="278" />
+        </connection>
+        <connection identifier="id-v-v09-c-n_sgp-cn_lan-ass" relationshipRef="id-r-ass-n_sgp-cn_lan" xsi:type="Relationship" source="id-v-v09-n-n_sgp" target="id-v-v09-n-cn_lan">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v09-c-d_fw-cn_lan-ass" relationshipRef="id-r-ass-d_fw-cn_lan" xsi:type="Relationship" source="id-v-v09-n-d_fw" target="id-v-v09-n-cn_lan">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v09-c-n_gws-cn_lan-ass" relationshipRef="id-r-ass-n_gws-cn_lan" xsi:type="Relationship" source="id-v-v09-n-n_gws" target="id-v-v09-n-cn_lan">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="398" y="88" />
+          <bendpoint x="398" y="278" />
+        </connection>
+        <connection identifier="id-v-v09-c-p_vpn-d_fw-ass" relationshipRef="id-r-ass-p_vpn-d_fw" xsi:type="Relationship" source="id-v-v09-n-p_vpn" target="id-v-v09-n-d_fw">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v09-c-p_vpn-n_vgw-ass" relationshipRef="id-r-ass-p_vpn-n_vgw" xsi:type="Relationship" source="id-v-v09-n-p_vpn" target="id-v-v09-n-n_vgw">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v09-c-n_vgw-cn_vnet-ass" relationshipRef="id-r-ass-n_vgw-cn_vnet" xsi:type="Relationship" source="id-v-v09-n-n_vgw" target="id-v-v09-n-cn_vnet">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v09-c-n_aca-cn_vnet-ass" relationshipRef="id-r-ass-n_aca-cn_vnet" xsi:type="Relationship" source="id-v-v09-n-n_aca" target="id-v-v09-n-cn_vnet">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v09-c-n_blob-cn_vnet-ass" relationshipRef="id-r-ass-n_blob-cn_vnet" xsi:type="Relationship" source="id-v-v09-n-n_blob" target="id-v-v09-n-cn_vnet">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v09-c-n_kv-cn_vnet-ass" relationshipRef="id-r-ass-n_kv-cn_vnet" xsi:type="Relationship" source="id-v-v09-n-n_kv" target="id-v-v09-n-cn_vnet">
+          <style><lineColor r="64" g="64" b="64" /></style>
+        </connection>
+        <connection identifier="id-v-v09-c-n_db-cn_vnet-ass" relationshipRef="id-r-ass-n_db-cn_vnet" xsi:type="Relationship" source="id-v-v09-n-n_db" target="id-v-v09-n-cn_vnet">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="791" y="240" />
+          <bendpoint x="922" y="240" />
+        </connection>
+        <connection identifier="id-v-v09-c-n_fdy-cn_vnet-ass" relationshipRef="id-r-ass-n_fdy-cn_vnet" xsi:type="Relationship" source="id-v-v09-n-n_fdy" target="id-v-v09-n-cn_vnet">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="1141" y="130" />
+          <bendpoint x="1010" y="130" />
+        </connection>
+        <connection identifier="id-v-v09-c-n_srch-cn_vnet-ass" relationshipRef="id-r-ass-n_srch-cn_vnet" xsi:type="Relationship" source="id-v-v09-n-n_srch" target="id-v-v09-n-cn_vnet">
+          <style><lineColor r="64" g="64" b="64" /></style>
+          <bendpoint x="1141" y="235" />
+          <bendpoint x="1010" y="235" />
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>
